@@ -1,0 +1,28 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Pacifico&family=Righteous&family=Satisfy&display=swap');
+font-family: 'Bebas Neue', sans-serif;
+font-family: 'Pacifico', cursive;
+font-family: 'Righteous', cursive;
+font-family: 'Satisfy', cursive; */
+
+.topnav-container {
+    width: 100%;
+    border-bottom: 1px solid var(--border-gray);
+    /* background-color: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); 
+    z-index: 0; */
+}
+
+.page-title {
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem;
+    /* z-index: 1; */
+}
+
+.trending-latest-container {
+    margin-top: 2rem;
+    display: flex;
+    font-weight: 600;
+    justify-content: space-around;
+}

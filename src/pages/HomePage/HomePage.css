@@ -1,0 +1,5 @@
+.home-page-container {
+    max-width: 33rem;
+    width: 100%;
+    border: 1px solid var(--border-gray);
+}
