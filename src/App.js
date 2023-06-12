@@ -9,13 +9,19 @@ import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
 import { SuggetionsRightAside } from "./components/SuggetionsRightAside/SuggetionsRightAside";
 import { RequiresAuth } from "./utils/RequiresAuth";
 import { LoginPage } from "./pages/AuthenticationPages/LoginPage/LoginPage";
+import { SignupPage } from "./pages/AuthenticationPages/SignupPage/SignupPage";
+import { useContext } from "react";
+import { AuthContext } from "./contexts/AuthProvider";
 
 function App() {
+
+  const {authState} = useContext(AuthContext)
+
   return (
     <div className="App">
-      <RequiresAuth>
-        <SideNav />
-      </RequiresAuth>
+      {/* <RequiresAuth> */}
+        {authState.isLoggedin && <SideNav />}
+      {/* </RequiresAuth> */}
 
       <Routes>
         <Route
@@ -50,12 +56,15 @@ function App() {
             </RequiresAuth>
           }
         />
+
+
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage/>}/>
       </Routes>
 
-      <RequiresAuth>
-        <SuggetionsRightAside />
-      </RequiresAuth>
+      {/* <RequiresAuth> */}
+       {authState.isLoggedin && <SuggetionsRightAside />}
+      {/* </RequiresAuth> */}
     </div>
   );
 }

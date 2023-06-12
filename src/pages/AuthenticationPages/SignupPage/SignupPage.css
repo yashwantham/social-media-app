@@ -1,0 +1,82 @@
+.signup-container {
+    width: 30rem;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: center;
+}
+
+.signup-container input {
+    border: none;
+    background-color: var(--verylight-blue);
+    height: 1.6rem;
+    width: 18rem;
+    border-radius: 5px;
+    padding: 0.4rem 1rem;
+}
+
+.signup-container p {
+    margin-bottom: 0.5rem;
+}
+
+.formError-warning {
+    color: red;
+    text-align: center;
+}
+
+.name-container, .email-container, .password-container, .confirm-password-container {
+    margin: 0.5rem 0;
+}
+
+.signup-btn-container {
+    margin: 1.2rem;
+}
+
+.signup-submit-btn {
+    border: none;
+    width: 20rem;
+    padding: 0.6rem 0rem;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    background-color: black;
+    color: white;
+}
+
+.signup-submit-btn:hover {
+    cursor: pointer;
+}
+
+.login-text {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.login-link {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+
+.password-container {
+    position: relative;
+}
+
+
+.show-hide-signup {
+    position: absolute;
+    font-weight: 500;
+    cursor: pointer;
+    right: 1rem;
+    top: 3.25rem;
+}
+
+@media only screen and (max-width: 1024px) {
+    .signup-container {
+        width: 20rem;
+        margin: 0.8rem auto;
+        padding: 0rem;
+    }
+}
