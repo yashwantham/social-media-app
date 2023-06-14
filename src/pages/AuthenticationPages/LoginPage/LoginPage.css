@@ -9,6 +9,11 @@
     align-items: center;
 }
 
+.formError-warning-login {
+    color: red;
+    text-align: center;
+}
+
 
 .login-container input {
     border: none;

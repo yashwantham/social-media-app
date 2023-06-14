@@ -1,8 +1,13 @@
 import { NavLink } from "react-router-dom";
 
 import "./SideNav.css";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 export function SideNav() {
+
+    const {authState} = useContext(AuthContext);
+
     return (
         <>
             <div className="sidenav-container">
@@ -24,7 +29,7 @@ export function SideNav() {
                     </div>
                 </div>
                 <NavLink to="/profile" className="profile-navi">
-                    Profile
+                    {`Profile - ${authState.userData.firstName} ${authState.userData.lastName} `}
                 </NavLink>
             </div>
         </>
