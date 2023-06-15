@@ -2,6 +2,10 @@ import { createContext, useReducer } from "react"
 import { ACTIONS, AuthReducer } from "../reducers/AuthRedcuer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+import { successToastmessage } from "../components/Toastmessage/successToastmessage";
 
 export const AuthContext = createContext();
 
@@ -17,10 +21,11 @@ export function AuthProvider({children}) {
         try {
             const response = await axios.post("/api/auth/signup", {...signupData})
             if(response.status === 201) {
-                console.log(response)
+                // console.log(response)
                 localStorage.setItem("userToken", response.data.encodedToken);
                 dispatchAuth({type: SET_LOGIN_TRUE});
                 dispatchAuth({ type: SET_USER_DATA, payload: response.data.createdUser });
+                successToastmessage("Logged in successfully!");
                 navigate("/");
             }
         }
@@ -34,10 +39,11 @@ export function AuthProvider({children}) {
         try {
             const response = await axios.post("/api/auth/login", loginData)
             if (response.status === 200) {
-                console.log(response)
+                // console.log(response)
                 localStorage.setItem("userToken", response.data.encodedToken)
                 dispatchAuth({ type: SET_LOGIN_TRUE });
                 dispatchAuth({ type: SET_USER_DATA, payload: response.data.foundUser });
+                successToastmessage("Logged in successfully!");
                 navigate("/");
             }
         }
@@ -52,6 +58,7 @@ export function AuthProvider({children}) {
     return (
         <>
             <AuthContext.Provider value={{authState, signupAuthUser, loginAuthUser}}>{children}</AuthContext.Provider>
+            <ToastContainer/>
         </>
     )
 }
