@@ -8,7 +8,7 @@ export function HomePage() {
         <div className="home-page-container">
             <TopNav pageName="Home"/>
 
-            <h1>Home Page</h1>
+            {/* <h1>Home Page</h1> */}
 
             <AllPostList/>
         </div>

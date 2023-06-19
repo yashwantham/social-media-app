@@ -3,6 +3,8 @@
   --border-gray: #7c878f;
   --verylight-blue: #e8f0fe;
   --like-color: #F91880;
+  /* --border-color: rgb(239, 243, 244); */
+  --border-color: rgb(197, 199, 199);
 }
 
 .App {
