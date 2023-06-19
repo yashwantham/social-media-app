@@ -24,6 +24,9 @@ export function SideNav() {
                     <NavLink to="/bookmarks" className="navi-container">
                         <i class="fa-regular fa-bookmark nav-icon"></i><span>Bookmarks</span>
                     </NavLink>
+                    <NavLink to="/profile" className="navi-container">
+                        <i class="fa-regular fa-user nav-icon"></i><span>Profile</span>
+                    </NavLink>
                     <div className="post-btn-container">
                         <button className="post-btn">Post</button>
                     </div>

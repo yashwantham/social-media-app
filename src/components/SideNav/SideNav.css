@@ -33,6 +33,7 @@ span {
 
 .navi-container:hover {
     background-color: #cce9fc;
+    /* background-color: var(--verylight-blue); */
 }
 
 .nav-icon {

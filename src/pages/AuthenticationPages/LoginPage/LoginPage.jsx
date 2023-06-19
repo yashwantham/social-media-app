@@ -38,8 +38,8 @@ export function LoginPage() {
     const loginAsGuestSubmit = (e) => {
         e.preventDefault();
         loginAuthUser({
-            username: "yashwantham",
-            password: "yashwantham123"
+            username: "kevindebruyne",
+            password: "kevindebruyne123"
         })
     }
 

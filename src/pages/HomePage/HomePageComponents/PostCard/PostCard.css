@@ -1,0 +1,83 @@
+/* .avatar-img {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 9999px;
+} */
+
+.avatar-container {
+    margin-right: 12px
+}
+
+.postcard-container {
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    padding: 12px 1rem;
+    font-size: 15px;
+}
+
+.post-media {
+    width: 100%;
+    max-height: 35rem;
+    object-fit: fill;
+    border-radius: 20px;
+    margin-bottom: 14px;
+}
+
+.usernpost-container {
+    display: flex;
+    flex-direction: column;
+    /* align-items: stretch; */
+    position: relative;
+}
+
+.userndate-container {
+    display: flex;
+    align-items: stretch;
+    /* margin-bottom: 2px; */
+    /* justify-content: space-around; */
+}
+
+.userndate-container span {
+    margin-right: 0.4rem;
+}
+
+.name {
+    font-weight: 700;
+}
+
+.username, .dot, .created-date {
+    color: #536471;
+} 
+
+.likecommentbook-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 340px;
+    /* margin-top: 12px; */
+}
+
+.action-icon {
+    font-size: 15px;
+}
+
+.interaction-count {
+    font-size: 15px;
+    padding-left: 12px;
+}
+
+.like-icon :hover {
+    color: var(--like-color);
+}
+
+.comment-icon:hover {
+    color: var(--primary-color);
+}
+
+.bookmark-icon:hover {
+    color: var(--primary-color);
+}
+
+.share-icon:hover {
+    color: var(--primary-color);
+}
