@@ -60,12 +60,13 @@
     /* margin-top: 12px; */
 }
 
-.action-icon-container {
+/* .action-icon-container {
     cursor: pointer;
-}
+} */
 
 .action-icon {
     font-size: 15px;
+    cursor: pointer;
 }
 
 .bookmarked-icon {
