@@ -64,6 +64,11 @@ textarea {
 .img-icon {
     color: var(--primary-color);
     font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.choose-file {
+    display: none;
 }
 
 .post-btn-container-wh {

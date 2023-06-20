@@ -4,12 +4,17 @@ import { DataContext } from "../../../../contexts/DataProvider";
 import { Avatar } from "../../../../components/Avatar/Avatar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
+import { addToBookmark, isPostBookmarked, removeFromBookmark } from "../../../../utils/bookmarkService";
+import { ToastContainer } from "react-toastify";
+import { successToastmessage } from "../../../../components/Toastmessage/successToastmessage";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 
 export function PostCard({ post }) {
 
-    const { dataState } = useContext(DataContext);
+    const authToken = localStorage.getItem("userToken");
+
+    const { dataState, dispatchData } = useContext(DataContext);
 
     const getAvatar = (postUsername) => dataState.usersList.find(({ username }) => postUsername === username).avatar
 
@@ -23,6 +28,16 @@ export function PostCard({ post }) {
             formattedDate += ", " + (date.getFullYear());
         }
         return formattedDate;
+    }
+
+    const addToBookmarkHandler = () => {
+        addToBookmark(authToken, post, dispatchData);
+        successToastmessage("Tweet added to your Bookmarks");
+    }
+
+    const removeFromBookmarkHandler = () => {
+        removeFromBookmark(authToken, post._id, dispatchData);
+        successToastmessage("Tweet removed from your Bookmarks");
     }
 
     return (
@@ -64,7 +79,7 @@ export function PostCard({ post }) {
                             <i class="fa-regular fa-comment action-icon"></i>{getCommentCount(post.comments) > 0 && <span className="interaction-count">{getCommentCount(post.comments)}</span>}
                         </div>
                         <div className="bookmark-icon action-icon-container">
-                            <i class="fa-regular fa-bookmark action-icon"></i>
+                            {isPostBookmarked(post._id, dataState) ? <i class="fa-solid fa-bookmark bookmarked-icon" onClick={removeFromBookmarkHandler}></i> : <i class="fa-regular fa-bookmark action-icon" onClick={addToBookmarkHandler}></i> }
                         </div>
                         <div className="share-icon action-icon-container">
                             {/* <i class="fa-sharp fa-solid fa-arrow-up-from-bracket action-icon"></i> */}
@@ -75,6 +90,7 @@ export function PostCard({ post }) {
                 </div>
 
             </div>
+            <ToastContainer/>
         </>
     )
 }

@@ -20,7 +20,7 @@ export function TopNav({pageName}) {
                 <div className="page-title">
                     {pageName}
                 </div>
-                {pageName === "Home" && (
+                {(pageName === "Home" || pageName === "Explore") && (
                     <div className="trending-latest-container">
                         <div className="latest" style={{borderBottom: dataState.showPostsBy.latest ? "4px solid var(--primary-color)" : "none"}} onClick={sortByLatest}>
                             Latest

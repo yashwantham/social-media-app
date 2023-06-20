@@ -60,8 +60,17 @@
     /* margin-top: 12px; */
 }
 
+.action-icon-container {
+    cursor: pointer;
+}
+
 .action-icon {
     font-size: 15px;
+}
+
+.bookmarked-icon {
+    font-size: 15px;
+    color: var(--primary-color);
 }
 
 .interaction-count {
