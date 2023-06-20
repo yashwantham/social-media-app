@@ -1,5 +1,9 @@
 .suggestionsrightaside-container {
+    height: 100%;
     width: 20rem;
     margin-right: 10px;
     /* border: 2px solid #000000; */
+    position: sticky;
+    top: 0;
+    z-index: 5;
 }

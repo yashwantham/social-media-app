@@ -8,6 +8,8 @@ export function SideNav() {
 
     const {authState} = useContext(AuthContext);
 
+    const activeStyle = { fontWeight: "700" }
+
     return (
         <>
             <div className="sidenav-container">
@@ -15,16 +17,16 @@ export function SideNav() {
                     <NavLink to="/" className="app-logo-name">
                         ConnectVerse
                     </NavLink>
-                    <NavLink to="/" className="navi-container"> 
+                    <NavLink to="/" className="navi-container" style={({isActive}) => (isActive ? activeStyle : undefined)}> 
                         <i class="fa-solid fa-house nav-icon"></i><span>Home</span>
                     </NavLink>
-                    <NavLink to="/explore" className="navi-container">
+                    <NavLink to="/explore" className="navi-container" style={({isActive}) => (isActive ? activeStyle : undefined)}>
                         <i class="fa-solid fa-magnifying-glass nav-icon"></i><span>Explore</span>
                     </NavLink>
-                    <NavLink to="/bookmarks" className="navi-container">
+                    <NavLink to="/bookmarks" className="navi-container" style={({isActive}) => (isActive ? activeStyle : undefined)}>
                         <i class="fa-regular fa-bookmark nav-icon"></i><span>Bookmarks</span>
                     </NavLink>
-                    <NavLink to="/profile" className="navi-container">
+                    <NavLink to="/profile" className="navi-container" style={({isActive}) => (isActive ? activeStyle : undefined)}>
                         <i class="fa-regular fa-user nav-icon"></i><span>Profile</span>
                     </NavLink>
                     <div className="post-btn-container">
