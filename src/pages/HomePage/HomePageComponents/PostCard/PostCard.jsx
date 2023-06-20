@@ -2,8 +2,8 @@ import { useContext } from "react";
 import "./PostCard.css";
 import { DataContext } from "../../../../contexts/DataProvider";
 import { Avatar } from "../../../../components/Avatar/Avatar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 
 export function PostCard({ post }) {
 

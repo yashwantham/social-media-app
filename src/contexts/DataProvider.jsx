@@ -11,7 +11,7 @@ const {SET_USERSLIST, SET_ALLPOSTS} = ACTIONS;
 
 export function DataProvider({ children }) {
 
-    const [dataState, dispatchData] = useReducer(DataReducer, { usersList: [], allPosts: [] })
+    const [dataState, dispatchData] = useReducer(DataReducer, { usersList: [], allPosts: [], showPostsBy: {latest: false, trending: false} })
 
     const getUsersList = async () => {
         try {
@@ -46,7 +46,7 @@ export function DataProvider({ children }) {
 
     return (
         <>
-            <DataContext.Provider value={{dataState}}>{children}</DataContext.Provider>
+            <DataContext.Provider value={{dataState, dispatchData}}>{children}</DataContext.Provider>
         </>
     )
 }

@@ -26,3 +26,13 @@ font-family: 'Satisfy', cursive; */
     font-weight: 600;
     justify-content: space-around;
 }
+
+.trending {
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+}
+
+.latest {
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+}
