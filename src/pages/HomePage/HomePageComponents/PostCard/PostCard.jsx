@@ -2,6 +2,8 @@ import { useContext } from "react";
 import "./PostCard.css";
 import { DataContext } from "../../../../contexts/DataProvider";
 import { Avatar } from "../../../../components/Avatar/Avatar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 
@@ -65,7 +67,9 @@ export function PostCard({ post }) {
                             <i class="fa-regular fa-bookmark action-icon"></i>
                         </div>
                         <div className="share-icon action-icon-container">
-                        <i class="fa-sharp fa-solid fa-arrow-up-from-bracket action-icon"></i>
+                            {/* <i class="fa-sharp fa-solid fa-arrow-up-from-bracket action-icon"></i> */}
+                            {/* <i class="fa-regular fa-share-nodes"></i> */}
+                            <FontAwesomeIcon icon={faShareNodes} />
                         </div>
                     </div>
                 </div>

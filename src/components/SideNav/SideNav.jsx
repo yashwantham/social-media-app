@@ -28,7 +28,7 @@ export function SideNav() {
                         <i class="fa-regular fa-user nav-icon"></i><span>Profile</span>
                     </NavLink>
                     <div className="post-btn-container">
-                        <button className="post-btn">Post</button>
+                        <button className="post-btn">Tweet</button>
                     </div>
                 </div>
                 <NavLink to="/profile" className="profile-navi">
