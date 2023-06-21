@@ -7,6 +7,8 @@ import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 import { addToBookmark, isPostBookmarked, removeFromBookmark } from "../../../../utils/bookmarkService";
 import { ToastContainer } from "react-toastify";
 import { successToastmessage } from "../../../../components/Toastmessage/successToastmessage";
+import { dislikePost, isPostLiked, likePost } from "../../../../utils/likeService";
+import { AuthContext } from "../../../../contexts/AuthProvider";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 
@@ -15,6 +17,8 @@ export function PostCard({ post }) {
     const authToken = localStorage.getItem("userToken");
 
     const { dataState, dispatchData } = useContext(DataContext);
+
+    const {authState} = useContext(AuthContext);
 
     const getAvatar = (postUsername) => dataState.usersList.find(({ username }) => postUsername === username).avatar
 
@@ -38,6 +42,14 @@ export function PostCard({ post }) {
     const removeFromBookmarkHandler = () => {
         removeFromBookmark(authToken, post._id, dispatchData);
         successToastmessage("Tweet removed from your Bookmarks");
+    }
+
+    const likeHandler = () => {
+        likePost(authToken, post._id, dispatchData);
+    }
+
+    const dislikeHandler = () => {
+        dislikePost(authToken, post._id, dispatchData);
     }
 
     return (
@@ -73,7 +85,7 @@ export function PostCard({ post }) {
                     </div>
                     <div className="likecommentbook-container">
                         <div className="like-icon action-icon-container">
-                            <i class="fa-regular fa-heart action-icon"></i>{post.likes.likeCount > 0 && <span className="interaction-count">{post.likes.likeCount}</span>}
+                            {isPostLiked(post, authState) ? <i class="fa-solid fa-heart action-icon liked-icon" onClick={dislikeHandler}></i> : <i class="fa-regular fa-heart action-icon" onClick={likeHandler}></i>} {post.likes.likeCount > 0 && <span className="interaction-count">{post.likes.likeCount}</span>}
                         </div>
                         <div className="comment-icon action-icon-container">
                             <i class="fa-regular fa-comment action-icon"></i>{getCommentCount(post.comments) > 0 && <span className="interaction-count">{getCommentCount(post.comments)}</span>}

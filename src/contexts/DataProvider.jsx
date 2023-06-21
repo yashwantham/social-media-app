@@ -15,6 +15,8 @@ export function DataProvider({ children }) {
 
     const [dataState, dispatchData] = useReducer(DataReducer, { usersList: [], allPosts: [], showPostsBy: {latest: false, trending: false}, bookmarks:[] })
 
+    console.log("dataState", dataState)
+
     const getUsersList = async () => {
         try {
             const response = await axios.get("/api/users")
@@ -44,7 +46,7 @@ export function DataProvider({ children }) {
     const getBookmarks = async () => {
         try {
             const response = await axios.get("/api/users/bookmark/", {headers: { authorization: authToken }})
-            console.log("getBookmarks", response)
+            // console.log("getBookmarks", response)
             if(response.status === 200) {
                 dispatchData({type: SET_BOOKMARKS, payload: response.data.bookmarks})
             }
