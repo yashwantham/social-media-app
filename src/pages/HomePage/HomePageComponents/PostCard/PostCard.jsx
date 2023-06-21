@@ -35,7 +35,7 @@ export function PostCard({ post }) {
     }
 
     const addToBookmarkHandler = () => {
-        addToBookmark(authToken, post, dispatchData);
+        addToBookmark(authToken, post._id, dispatchData);
         successToastmessage("Tweet added to your Bookmarks");
     }
 
