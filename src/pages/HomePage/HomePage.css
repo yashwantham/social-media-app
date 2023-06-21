@@ -1,7 +1,9 @@
 .home-page-container {
     max-width: 38rem;
     width: 100%;
-    /* border: 1px solid var(--border-color); */
+    min-height: 100vh;
+    height: 100%;
+    /* border: 2px solid #000000; */
     border-right: 1px solid var(--border-color);
     border-left: 1px solid var(--border-color);
 }

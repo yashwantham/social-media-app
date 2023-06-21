@@ -19,7 +19,7 @@ export function BookmarksPage() {
     const getBookmarks = async () => {
         try {
             const response = await axios.get("/api/users/bookmark/", {headers: { authorization: authToken }})
-            console.log("getBookmarks", response)
+            // console.log("getBookmarks", response)
             if(response.status === 200) {
                 dispatchData({type: SET_BOOKMARKS, payload: response.data.bookmarks})
                 setBm(response.data.bookmarks)
@@ -32,14 +32,15 @@ export function BookmarksPage() {
 
     useEffect(() => {
         getBookmarks();
-    }, [])
+    }, [dataState.bookmarks])
+
+    const bookMarkedPosts = bm.map((bmId) => dataState.allPosts.find(({_id}) => _id === bmId ));
 
     return (
         <>
         <div className="bookmarks-page-container">
             <TopNav pageName={"Bookmarks"}/>
-            {/* {dataState.bookmarks.map((post) => <PostCard post={post}/>)} */}
-            {bm.map((post) => <PostCard post={post}/>)}
+            {bookMarkedPosts.map((post) => <PostCard post={post}/>)}
         </div>
         </>
     )
