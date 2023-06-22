@@ -3,26 +3,54 @@ import "./SuggetionsRightAside.css";
 import { DataContext } from "../../contexts/DataProvider";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { Avatar } from "../Avatar/Avatar";
+import { follow } from "../../utils/followService";
+import { successToastmessage } from "../Toastmessage/successToastmessage";
 
 export function SuggetionsRightAside() {
 
-    const {dataState} = useContext(DataContext);
+    const authToken = localStorage.getItem("userToken");
 
-    const {authState} = useContext(AuthContext);
+    const { dataState, dispatchData } = useContext(DataContext);
+
+    const { authState } = useContext(AuthContext);
 
     // console.log(authState)
     // console.log(dataState.usersList)
 
-    const suggestionsList = dataState.usersList.filter(({username}) => username !== authState.userData.username)
+    const suggestionsList = dataState.usersList.filter(({ username }) => username !== authState.userData.username)
+
+    const followHandler = (id, firstName, lastName) => {
+        follow(id, authToken, dispatchData);
+        successToastmessage(`Followed ${firstName} ${lastName}`);
+    }
 
     return (
         <>
             <div className="suggestionsrightaside-container">
-                <h1>Who to follow</h1>
-                {suggestionsList.map(({firstName, lastName, avatar}) => (
-                    <div>
-                        <Avatar imgSrc={avatar}/>
-                        <p>{firstName} {lastName}</p>
+                <h2>Who to follow</h2>
+                {suggestionsList.map(({ _id, firstName, lastName, username, avatar }) => (
+                    <div className="suggesteduser-container">
+
+                        <div className="avatar-sugg-container">
+                            <Avatar imgSrc={avatar} />
+                        </div>
+
+                        <div className="followbtn-name-sugg-container">
+                            <div className="name-username-sugg-container">
+                                <div className="name-sugg">
+                                    {`${firstName} ${lastName}`}
+                                </div>
+                                <div className="username-sugg">
+                                    @{username}
+                                </div>
+                            </div>
+                            <div className="follow-btn-sugg-container">
+                                <button className="follow-btn-sugg" onClick={() => followHandler(_id, firstName, lastName)}>
+                                    Follow
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                 ))}
             </div>

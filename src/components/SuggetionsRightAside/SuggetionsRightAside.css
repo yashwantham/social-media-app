@@ -6,4 +6,71 @@
     position: sticky;
     top: 0;
     z-index: 5;
+    background-color: rgb(247, 249, 249);
+    border: 1px solid rgb(247, 249, 249);
+    border-radius: 16px;
+    margin-left: 25px;
+    margin-top: 16px;
+    box-sizing: border-box;
+    text-align: left;
+    font-size: 15px;
+}
+
+h2 {
+    padding: 0px 16px;
+    font-size: 20px;
+}
+
+.suggesteduser-container {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 12px 16px;
+}
+
+
+.avatar-sugg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+}
+
+.followbtn-name-sugg-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.name-username-sugg-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-sugg {
+    font-weight: 700;
+}
+
+.username-sugg {
+    color: var(--username-color);
+}
+
+.follow-btn-sugg-container {
+    min-width: 78px;
+}
+
+.follow-btn-sugg {
+
+    background-color: rgb(15, 20, 25);
+    min-height: 32px;
+    min-width: 32px;
+    padding: 0px 16px;
+    border-radius: 9999px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 20px;
 }
