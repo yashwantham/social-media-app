@@ -50,7 +50,7 @@
 }
 
 .username, .dot, .created-date {
-    color: #536471;
+    color: var(--username-color);
 } 
 
 .likecommentbook-container {

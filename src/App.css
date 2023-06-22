@@ -1,10 +1,11 @@
 :root {
   --primary-color: #1d9cf0;
-  --border-gray: #7c878f;
+  /* --border-gray: #7c878f; */
   --verylight-blue: #e8f0fe;
   --like-color: #F91880;
   /* --border-color: rgb(239, 243, 244); */
   --border-color: rgb(197, 199, 199);
+  --username-color: #536471;
 }
 
 .App {

@@ -11,9 +11,10 @@ const {SET_USERSLIST, SET_ALLPOSTS, SET_BOOKMARKS} = ACTIONS;
 
 export function DataProvider({ children }) {
 
-    const authToken = localStorage.getItem("userToken")
+    const authToken = localStorage.getItem("userToken");
 
-    const [dataState, dispatchData] = useReducer(DataReducer, { usersList: [], allPosts: [], showPostsBy: {latest: false, trending: false}, bookmarks:[] })
+    const [dataState, dispatchData] = useReducer(DataReducer, { usersList: [], allPosts: [], showPostsBy: {latest: false, trending: false}, bookmarks:[], followers: [],
+        following: [] })
 
     console.log("dataState", dataState)
 

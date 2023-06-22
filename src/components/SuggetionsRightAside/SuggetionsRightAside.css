@@ -63,7 +63,6 @@ h2 {
 }
 
 .follow-btn-sugg {
-
     background-color: rgb(15, 20, 25);
     min-height: 32px;
     min-width: 32px;
@@ -73,4 +72,25 @@ h2 {
     font-size: 15px;
     font-weight: 700;
     line-height: 20px;
+    cursor: pointer;
+}
+
+.following-btn-sugg {
+    color: rgb(15, 20, 25);
+    min-height: 32px;
+    min-width: 32px;
+    padding: 0px 16px;
+    border-radius: 9999px;
+    border: 1px solid var(--border-color);
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.following-btn-sugg:hover {
+    color: red;
+    border-color: rgb(244, 209, 209);
+    background-color: rgb(244, 209, 209);
 }

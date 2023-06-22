@@ -11,7 +11,7 @@ export const AuthContext = createContext();
 
 export function AuthProvider({children}) {
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
 
     const { SET_LOGIN_TRUE, SET_LOGIN_FALSE, SET_USER_DATA} = ACTIONS;
 
@@ -39,7 +39,7 @@ export function AuthProvider({children}) {
         try {
             const response = await axios.post("/api/auth/login", loginData)
             if (response.status === 200) {
-                // console.log(response)
+                console.log(response)
                 localStorage.setItem("userToken", response.data.encodedToken)
                 dispatchAuth({ type: SET_LOGIN_TRUE });
                 dispatchAuth({ type: SET_USER_DATA, payload: response.data.foundUser });
@@ -57,7 +57,7 @@ export function AuthProvider({children}) {
 
     return (
         <>
-            <AuthContext.Provider value={{authState, signupAuthUser, loginAuthUser}}>{children}</AuthContext.Provider>
+            <AuthContext.Provider value={{authState, dispatchAuth, signupAuthUser, loginAuthUser}}>{children}</AuthContext.Provider>
             <ToastContainer/>
         </>
     )
