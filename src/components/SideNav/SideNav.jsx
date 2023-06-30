@@ -11,7 +11,7 @@ export function SideNav() {
     const activeStyle = { fontWeight: "700" }
 
     return (
-        <>
+        <> 
             <div className="sidenav-container">
                 <div className="sidenav-navigators">
                     <NavLink to="/" className="app-logo-name">

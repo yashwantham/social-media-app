@@ -61,10 +61,15 @@ span {
     justify-content: center;
     align-items: center;
     width: 90%;
+    /* abc */
+    min-height: 52px;
+    min-width: 52px;
+    /* xyz */
     font-size: 1.2rem;
     font-weight: 700;
     box-sizing: border-box;
-    padding: 0.5rem 0.2rem;
+    /* padding: 0.5rem 0.2rem; */
+    padding: 0px 32px;
     border-radius: 9999px;
     color: #fff;
     background-color: var(--primary-color);
