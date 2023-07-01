@@ -1,12 +1,118 @@
+import { useContext } from "react";
+import { TopNav } from "../../components/TopNav/TopNav";
+import { AuthContext } from "../../contexts/AuthProvider";
 import "./ProfilePage.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { DataContext } from "../../contexts/DataProvider";
+import { PostCard } from "../HomePage/HomePageComponents/PostCard/PostCard";
+import { ACTIONS } from "../../reducers/DataRedcuer";
 
 export function ProfilePage() {
+
+    const {SET_TWEETS_PP_TRUE, SET_MEDIA_PP_TRUE, SET_LIKES_PP_TRUE} = ACTIONS;
+
+    const { authState } = useContext(AuthContext);
+    const { dataState, dispatchData } = useContext(DataContext);
+
+    let postsToDisplay = [...dataState.allPosts];
+
+    if(dataState.profilePageShow.tweets) {
+        postsToDisplay = postsToDisplay.filter(({username}) => username === authState.userData.username)
+    }
+    else if(dataState.profilePageShow.media) {
+        postsToDisplay = postsToDisplay.filter(({mediaURL, username}) => mediaURL.length !== 0 && username === authState.userData.username)
+    }
+    else if(dataState.profilePageShow.likes) {
+        postsToDisplay = postsToDisplay.filter(({likes}) => likes.likedBy.find(({username}) => username === authState.userData.username))
+    }
+
+    const showTweets = () => dispatchData({type: SET_TWEETS_PP_TRUE})
+
+    const showMedia = () => dispatchData({type: SET_MEDIA_PP_TRUE})
+
+    const showLikes = () => dispatchData({type: SET_LIKES_PP_TRUE})
+
     return (
         <>
-        <div className="profile-page-container">
+            <div className="profile-page-container">
+                <TopNav pageName="Profile" />
 
-            <h1>Profile Page</h1>
-        </div>
+                <div className="header-profiledetails-container">
+
+                    <div className="header-container">
+                        {authState.userData.header.length !== 0 && <img src={authState.userData.header} alt="" className="header" />}
+                    </div>
+
+                    <div className="profiledetails-avatar-editbtn-container">
+
+                        <div className="avatar-editbtn-container">
+                            <div className="avatar-pp-container">
+                                <img src={authState.userData.avatar} alt="" className="avatart-pp" />
+                            </div>
+                            <div className="editprofile-btn-container">
+                                <button className="editprofile-btn">
+                                    Edit profile
+                                </button>
+                            </div>
+                        </div>
+                        <div className="name-n-username-pp-container">
+                            <div className="name-pp">
+                                {`${authState.userData.firstName} ${authState.userData.lastName}`}
+                            </div>
+                            <div className="username-pp">
+                                @{authState.userData.username}
+                            </div>
+                        </div>
+
+                        <div className="bio-pp">
+                            {authState.userData.bio}
+                        </div>
+
+                        <div className="website-pp">
+                            <i class="fa-solid fa-link"></i><a href={authState.userData.website} target="_blank" rel="noreferrer">{authState.userData.website}</a>
+                        </div>
+
+                        <div className="location-createdat-container">
+                            <div className="location-pp">
+                                <FontAwesomeIcon icon={faLocationDot} className="location-icon" /> {authState.userData.location}
+                            </div>
+                            <div className="createdat">
+                                <FontAwesomeIcon icon={faCalendarDays} className="calendar-icon" /> Joined {authState.userData.createdAt}
+                            </div>
+                        </div>
+
+                        <div className="followers-following-pp-container">
+                            <div className="following-pp">
+                                <span className="fnumber">{authState.userData.following.length}</span> Following
+                            </div>
+                            <div className="followers-pp">
+                            <span className="fnumber">{authState.userData.followers.length}</span> Followers
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div className="tweets-media-likes-container">
+
+                    <div className="tweets-pp"  style={{borderBottom: dataState.profilePageShow.tweets ? "4px solid var(--primary-color)" : "none"}} onClick={showTweets}>
+                        Tweets
+                    </div>
+                    <div className="media-pp" style={{borderBottom: dataState.profilePageShow.media ? "4px solid var(--primary-color)" : "none"}} onClick={showMedia}>
+                        Media
+                    </div>
+                    <div className="likes-pp" style={{borderBottom: dataState.profilePageShow.likes ? "4px solid var(--primary-color)" : "none"}} onClick={showLikes}>
+                        Likes
+                    </div>
+                </div>
+
+                <div className="poststodisplay-pp">
+                {postsToDisplay.map((post) => <PostCard post={post}/>)}
+                </div>
+
+            </div>
         </>
     )
 }

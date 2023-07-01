@@ -6,11 +6,14 @@ export const ACTIONS = {
     SET_LATEST_TRUE: "set_latest_true",
     RESET_LATEST_TRENDING: "reset_latest_trending",
     SET_BOOKMARKS: "set_bookmarks",
-    SET_FOLLOWING: "set_following"
+    SET_FOLLOWING: "set_following",
+    SET_TWEETS_PP_TRUE: "set_tweets_pp_true",
+    SET_MEDIA_PP_TRUE: "set_media_pp_true",
+    SET_LIKES_PP_TRUE: "set_likes_pp_true",
 
 }
 
-const {SET_USERSLIST, UPDATE_USERLIST, SET_ALLPOSTS,  SET_TRENDING_TRUE, SET_LATEST_TRUE, RESET_LATEST_TRENDING, SET_BOOKMARKS, SET_FOLLOWING} = ACTIONS;
+const {SET_USERSLIST, UPDATE_USERLIST, SET_ALLPOSTS,  SET_TRENDING_TRUE, SET_LATEST_TRUE, RESET_LATEST_TRENDING, SET_BOOKMARKS, SET_FOLLOWING, SET_TWEETS_PP_TRUE, SET_MEDIA_PP_TRUE, SET_LIKES_PP_TRUE} = ACTIONS;
 
 export const DataReducer = (state, action) => {
 
@@ -48,6 +51,18 @@ export const DataReducer = (state, action) => {
 
         case SET_FOLLOWING: {
             return {...state, following: [...action.payload]}
+        }
+
+        case SET_TWEETS_PP_TRUE: {
+            return {...state, profilePageShow: {tweets: true, media: false, likes: false}}
+        }
+
+        case SET_MEDIA_PP_TRUE: {
+            return {...state, profilePageShow: {tweets: false, media: true, likes: false}}
+        }
+
+        case SET_LIKES_PP_TRUE: {
+            return {...state, profilePageShow: {tweets: false, media: false, likes: true}}
         }
 
         default: {

@@ -13,13 +13,16 @@ font-family: 'Satisfy', cursive; */
     position: sticky;
     top: 0;
     z-index: 5;
+    box-sizing: border-box;
+    padding: 0px 16px;
 }
 
 .page-title {
     text-align: left;
     font-size: 1.2rem;
     font-weight: 700;
-    padding: 1rem;
+    /* padding: 1rem; */
+    padding: 16px 0px;
     /* z-index: 1; */
 }
 
@@ -38,4 +41,52 @@ font-family: 'Satisfy', cursive; */
 .latest {
     cursor: pointer;
     padding-bottom: 0.5rem;
+}
+
+.arrow-profilename-container {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.profilename-tcount-container {
+    text-align: left;
+}
+
+.arrow-profilename-container {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.leftarrow-pp {
+    min-width: 56px;
+    font-size: 18px;
+    text-align: left;
+    /* margin-right: 1rem; */
+}
+
+.arrowpp {
+    color: rgb(15, 20, 25);
+    font-weight: 700;
+    /* padding: 16px; */
+    box-sizing: border-box;
+}
+
+.arrowpp:hover {
+    border-radius: 9999px;
+    background-color: rgba(199, 192, 192, 0.85);
+    cursor: pointer;
+}
+
+.profilename {
+    font-weight: 700;
+    color: rgb(15, 20, 25);
+    font-size: 20px;
+}
+
+.tweetcount {
+    color: rgb(83, 100, 113);
+    line-height: 16px;
+    font-size: 13px;
+    font-weight: 400;
 }
