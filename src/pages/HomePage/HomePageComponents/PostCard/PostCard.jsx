@@ -66,8 +66,7 @@ export function PostCard({ post }) {
                 <div className="usernpost-container">
                     <div className="userndate-container">
                         {/* <strong>{post.name}</strong> @{post.username} · {post.createdAt} */}
-                        <NavLink to={`/profile/${getUserId(post.username)}`}>
-
+                        <NavLink to={getUserId(post.username) === authState.userData._id ? `/profile` : `/profile/${getUserId(post.username)}`}>
                             <span className="name">
                                 {/* <strong>{post.name}</strong> */}
                                 {post.name}

@@ -26,7 +26,7 @@ export function HomePage() {
 
                 <div className="whats-happening-cotainer">
                     <div className="avatar-container-wh">
-                        <Avatar imgSrc={authState.userData.avatar} />
+                        <Avatar imgSrc={authState.userData.avatar} userId={authState.userData._id}/>
                     </div>
                     <div className="input-n-post-container">
                         <div className="posttext-input-container">
