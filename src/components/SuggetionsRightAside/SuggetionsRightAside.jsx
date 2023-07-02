@@ -6,6 +6,7 @@ import { Avatar } from "../Avatar/Avatar";
 import { follow, isFollowing, unfollow } from "../../utils/followService";
 import { successToastmessage } from "../Toastmessage/successToastmessage";
 import { warningToastmessage } from "../Toastmessage/warningToastmessage";
+import { NavLink } from "react-router-dom";
 
 export function SuggetionsRightAside() {
 
@@ -38,18 +39,20 @@ export function SuggetionsRightAside() {
                     <div className="suggesteduser-container">
 
                         <div className="avatar-sugg-container">
-                            <Avatar imgSrc={avatar} />
+                            <Avatar imgSrc={avatar} userId={_id}/>
                         </div>
 
                         <div className="followbtn-name-sugg-container">
-                            <div className="name-username-sugg-container">
-                                <div className="name-sugg">
-                                    {`${firstName} ${lastName}`}
+                            <NavLink to={`/profile/${_id}`}>
+                                <div className="name-username-sugg-container">
+                                    <div className="name-sugg">
+                                        {`${firstName} ${lastName}`}
+                                    </div>
+                                    <div className="username-sugg">
+                                        @{username}
+                                    </div>
                                 </div>
-                                <div className="username-sugg">
-                                    @{username}
-                                </div>
-                            </div>
+                            </NavLink>
                             <div className="follow-btn-sugg-container">
                                 {isFollowing(_id, dataState) ? <button className="following-btn-sugg" onClick={() => unfollowHandler(_id, firstName, lastName)}>Following</button> : <button className="follow-btn-sugg" onClick={() => followHandler(_id, firstName, lastName)}>
                                     Follow
