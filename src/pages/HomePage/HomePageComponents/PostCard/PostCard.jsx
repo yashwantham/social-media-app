@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import { successToastmessage } from "../../../../components/Toastmessage/successToastmessage";
 import { dislikePost, isPostLiked, likePost } from "../../../../utils/likeService";
 import { AuthContext } from "../../../../contexts/AuthProvider";
+import { NavLink } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 
@@ -18,9 +19,11 @@ export function PostCard({ post }) {
 
     const { dataState, dispatchData } = useContext(DataContext);
 
-    const {authState} = useContext(AuthContext);
+    const { authState } = useContext(AuthContext);
 
     const getAvatar = (postUsername) => dataState.usersList.find(({ username }) => postUsername === username).avatar
+
+    const getUserId = (postUsername) => dataState.usersList.find(({ username }) => postUsername === username)._id
 
     const getCommentCount = (comments) => comments.reduce((acc, comm) => acc + 1, 0)
 
@@ -57,19 +60,22 @@ export function PostCard({ post }) {
             <div className="postcard-container">
 
                 <div className="avatar-container">
-                    <Avatar imgSrc={getAvatar(post.username)} />
+                    <Avatar imgSrc={getAvatar(post.username)} userId={getUserId(post.username)} />
                 </div>
 
                 <div className="usernpost-container">
                     <div className="userndate-container">
                         {/* <strong>{post.name}</strong> @{post.username} · {post.createdAt} */}
-                        <span className="name">
-                            {/* <strong>{post.name}</strong> */}
-                            {post.name}
-                        </span>
-                        <span className="username">
-                            @{post.username}
-                        </span>
+                        <NavLink to={`/profile/${getUserId(post.username)}`}>
+
+                            <span className="name">
+                                {/* <strong>{post.name}</strong> */}
+                                {post.name}
+                            </span>
+                            <span className="username">
+                                @{post.username}
+                            </span>
+                        </NavLink>
                         <span className="dot">
                             ·
                         </span>
@@ -91,7 +97,7 @@ export function PostCard({ post }) {
                             <i class="fa-regular fa-comment action-icon"></i>{getCommentCount(post.comments) > 0 && <span className="interaction-count">{getCommentCount(post.comments)}</span>}
                         </div>
                         <div className="bookmark-icon action-icon-container">
-                            {isPostBookmarked(post._id, dataState) ? <i class="fa-solid fa-bookmark action-icon bookmarked-icon" onClick={removeFromBookmarkHandler}></i> : <i class="fa-regular fa-bookmark action-icon" onClick={addToBookmarkHandler}></i> }
+                            {isPostBookmarked(post._id, dataState) ? <i class="fa-solid fa-bookmark action-icon bookmarked-icon" onClick={removeFromBookmarkHandler}></i> : <i class="fa-regular fa-bookmark action-icon" onClick={addToBookmarkHandler}></i>}
                         </div>
                         <div className="share-icon action-icon-container">
                             {/* <i class="fa-sharp fa-solid fa-arrow-up-from-bracket action-icon"></i> */}
@@ -102,7 +108,7 @@ export function PostCard({ post }) {
                 </div>
 
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </>
     )
 }

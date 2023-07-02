@@ -1,0 +1,57 @@
+.othersprofile-page-container {
+    max-width: 38rem;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    /* border: 2px solid #000000; */
+    border-right: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+    font-size: 15px;
+}
+
+
+.follow-btn-pp-container {
+    margin-bottom: 12px;
+}
+
+.follow-btn-pp {
+    min-width: 81px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(15, 20, 25);
+    font-weight: 700;
+    font-size: 15px;
+    outline-style: none;
+    min-width: 36px;
+    min-height: 36px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border: 0px solid rgb(15, 20, 25);
+    border-radius: 9999px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.following-btn-pp {
+    min-width: 81px;
+    color: rgb(15, 20, 25);
+    border: 1px solid var(--border-color);
+    background-color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    outline-style: none;
+    min-width: 36px;
+    min-height: 36px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 9999px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.following-btn-pp:hover {
+    color: red;
+    border-color: rgb(244, 209, 209);
+    background-color: rgb(244, 209, 209);
+}

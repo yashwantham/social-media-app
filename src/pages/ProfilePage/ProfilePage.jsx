@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { TopNav } from "../../components/TopNav/TopNav";
 import { AuthContext } from "../../contexts/AuthProvider";
 import "./ProfilePage.css";
@@ -10,28 +10,38 @@ import { ACTIONS } from "../../reducers/DataRedcuer";
 
 export function ProfilePage() {
 
-    const {SET_TWEETS_PP_TRUE, SET_MEDIA_PP_TRUE, SET_LIKES_PP_TRUE} = ACTIONS;
+    const { SET_TWEETS_PP_TRUE, SET_MEDIA_PP_TRUE, SET_LIKES_PP_TRUE } = ACTIONS;
 
     const { authState } = useContext(AuthContext);
     const { dataState, dispatchData } = useContext(DataContext);
 
     let postsToDisplay = [...dataState.allPosts];
 
-    if(dataState.profilePageShow.tweets) {
-        postsToDisplay = postsToDisplay.filter(({username}) => username === authState.userData.username)
+    if (dataState.profilePageShow.tweets) {
+        postsToDisplay = postsToDisplay.filter(({ username }) => username === authState.userData.username)
     }
-    else if(dataState.profilePageShow.media) {
-        postsToDisplay = postsToDisplay.filter(({mediaURL, username}) => mediaURL.length !== 0 && username === authState.userData.username)
+    else if (dataState.profilePageShow.media) {
+        postsToDisplay = postsToDisplay.filter(({ mediaURL, username }) => mediaURL.length !== 0 && username === authState.userData.username)
     }
-    else if(dataState.profilePageShow.likes) {
-        postsToDisplay = postsToDisplay.filter(({likes}) => likes.likedBy.find(({username}) => username === authState.userData.username))
+    else if (dataState.profilePageShow.likes) {
+        postsToDisplay = postsToDisplay.filter(({ likes }) => likes.likedBy.find(({ username }) => username === authState.userData.username))
     }
 
-    const showTweets = () => dispatchData({type: SET_TWEETS_PP_TRUE})
+    const getJoinDate = (dt) => {
+        const date = new Date(dt);
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        return `${monthNames[date.getMonth()]} ${date.getFullYear()}`
+    }
 
-    const showMedia = () => dispatchData({type: SET_MEDIA_PP_TRUE})
+    const showTweets = () => dispatchData({ type: SET_TWEETS_PP_TRUE })
 
-    const showLikes = () => dispatchData({type: SET_LIKES_PP_TRUE})
+    const showMedia = () => dispatchData({ type: SET_MEDIA_PP_TRUE })
+
+    const showLikes = () => dispatchData({ type: SET_LIKES_PP_TRUE })
+
+    useEffect(() => {
+        dispatchData({ type: SET_TWEETS_PP_TRUE });
+    }, [])
 
     return (
         <>
@@ -78,7 +88,7 @@ export function ProfilePage() {
                                 <FontAwesomeIcon icon={faLocationDot} className="location-icon" /> {authState.userData.location}
                             </div>
                             <div className="createdat">
-                                <FontAwesomeIcon icon={faCalendarDays} className="calendar-icon" /> Joined {authState.userData.createdAt}
+                                <FontAwesomeIcon icon={faCalendarDays} className="calendar-icon" /> Joined {getJoinDate(authState.userData.createdAt)}
                             </div>
                         </div>
 
@@ -87,7 +97,7 @@ export function ProfilePage() {
                                 <span className="fnumber">{authState.userData.following.length}</span> Following
                             </div>
                             <div className="followers-pp">
-                            <span className="fnumber">{authState.userData.followers.length}</span> Followers
+                                <span className="fnumber">{authState.userData.followers.length}</span> Followers
                             </div>
                         </div>
 
@@ -97,19 +107,19 @@ export function ProfilePage() {
 
                 <div className="tweets-media-likes-container">
 
-                    <div className="tweets-pp"  style={{borderBottom: dataState.profilePageShow.tweets ? "4px solid var(--primary-color)" : "none"}} onClick={showTweets}>
+                    <div className="tweets-pp" style={{ borderBottom: dataState.profilePageShow.tweets ? "4px solid var(--primary-color)" : "none" }} onClick={showTweets}>
                         Tweets
                     </div>
-                    <div className="media-pp" style={{borderBottom: dataState.profilePageShow.media ? "4px solid var(--primary-color)" : "none"}} onClick={showMedia}>
+                    <div className="media-pp" style={{ borderBottom: dataState.profilePageShow.media ? "4px solid var(--primary-color)" : "none" }} onClick={showMedia}>
                         Media
                     </div>
-                    <div className="likes-pp" style={{borderBottom: dataState.profilePageShow.likes ? "4px solid var(--primary-color)" : "none"}} onClick={showLikes}>
+                    <div className="likes-pp" style={{ borderBottom: dataState.profilePageShow.likes ? "4px solid var(--primary-color)" : "none" }} onClick={showLikes}>
                         Likes
                     </div>
                 </div>
 
                 <div className="poststodisplay-pp">
-                {postsToDisplay.map((post) => <PostCard post={post}/>)}
+                    {postsToDisplay.map((post) => <PostCard post={post} />)}
                 </div>
 
             </div>

@@ -12,6 +12,7 @@ import { LoginPage } from "./pages/AuthenticationPages/LoginPage/LoginPage";
 import { SignupPage } from "./pages/AuthenticationPages/SignupPage/SignupPage";
 import { useContext } from "react";
 import { AuthContext } from "./contexts/AuthProvider";
+import { OthersProfilePage } from "./pages/OthersProfilePage/OthersProfilePage";
 
 function App() {
 
@@ -56,8 +57,7 @@ function App() {
             </RequiresAuth>
           }
         />
-
-
+        <Route path={`/profile/:userId`} element={<OthersProfilePage/>}/>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage/>}/>
       </Routes>
