@@ -35,7 +35,7 @@ export const users = [
     // following: [],
     bookmarks: [],
     bio: "This is bio",
-    website: "This is website",
+    website: "https://yashwanth-portfolio.netlify.app/",
     location: "This is location",
     createdAt: formatDate(),
     updatedAt: formatDate(),
