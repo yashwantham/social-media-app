@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./PostCard.css";
 import { DataContext } from "../../../../contexts/DataProvider";
 import { Avatar } from "../../../../components/Avatar/Avatar";
@@ -55,6 +55,8 @@ export function PostCard({ post }) {
         dislikePost(authToken, post._id, dispatchData);
     }
 
+    const [showeditdelete, setShoweditdelete] = useState(false)
+
     return (
         <>
             <div className="postcard-container">
@@ -64,24 +66,49 @@ export function PostCard({ post }) {
                 </div>
 
                 <div className="usernpost-container">
-                    <div className="userndate-container">
-                        {/* <strong>{post.name}</strong> @{post.username} · {post.createdAt} */}
-                        <NavLink to={getUserId(post.username) === authState.userData._id ? `/profile` : `/profile/${getUserId(post.username)}`}>
-                            <span className="name">
-                                {/* <strong>{post.name}</strong> */}
-                                {post.name}
+
+                    <div className="userdatedeledi-container">
+
+                        <div className="userndate-container">
+                            {/* <strong>{post.name}</strong> @{post.username} · {post.createdAt} */}
+                            <NavLink to={getUserId(post.username) === authState.userData._id ? `/profile` : `/profile/${getUserId(post.username)}`}>
+                                <span className="name">
+                                    {/* <strong>{post.name}</strong> */}
+                                    {post.name}
+                                </span>
+                                <span className="username">
+                                    @{post.username}
+                                </span>
+                            </NavLink>
+                            <span className="dot">
+                                ·
                             </span>
-                            <span className="username">
-                                @{post.username}
+                            <span className="created-date">
+                                {getPostedTime(post.createdAt)}
                             </span>
-                        </NavLink>
-                        <span className="dot">
-                            ·
-                        </span>
-                        <span className="created-date">
-                            {getPostedTime(post.createdAt)}
-                        </span>
+                        </div>
+                        <div className="editdelete-opener">
+                            {post.username === authState.userData.username && (
+                                <div className="deletepostcontainer">
+                                    <i class="fa-solid fa-ellipsis threedots-icon" onClick={() => setShoweditdelete(!showeditdelete)}></i>
+                                </div>
+                            )}
+                        </div>
+
                     </div>
+
+                    {showeditdelete && post.username === authState.userData.username && (
+                        <div className="editdelete-modal-container">
+                            <div className="overlay-deleteedit-popup" onClick={() => setShoweditdelete(!showeditdelete)}></div>
+                            <div className="edit-post">
+                                Edit
+                            </div>
+                            <div className="delete-post">
+                                Delete
+                            </div>
+                        </div>
+                    )}
+
                     <div className="content-container">
                         <p>{post.content}</p>
                     </div>
