@@ -6,6 +6,7 @@ export const ACTIONS = {
     SET_LATEST_TRUE: "set_latest_true",
     RESET_LATEST_TRENDING: "reset_latest_trending",
     SET_BOOKMARKS: "set_bookmarks",
+    TOGGLE_MODAL: "toggle_modal",
     SET_FOLLOWING: "set_following",
     SET_TWEETS_PP_TRUE: "set_tweets_pp_true",
     SET_MEDIA_PP_TRUE: "set_media_pp_true",
@@ -13,7 +14,7 @@ export const ACTIONS = {
 
 }
 
-const {SET_USERSLIST, UPDATE_USERLIST, SET_ALLPOSTS,  SET_TRENDING_TRUE, SET_LATEST_TRUE, RESET_LATEST_TRENDING, SET_BOOKMARKS, SET_FOLLOWING, SET_TWEETS_PP_TRUE, SET_MEDIA_PP_TRUE, SET_LIKES_PP_TRUE} = ACTIONS;
+const {SET_USERSLIST, UPDATE_USERLIST, SET_ALLPOSTS,  SET_TRENDING_TRUE, SET_LATEST_TRUE, RESET_LATEST_TRENDING, SET_BOOKMARKS, TOGGLE_MODAL, SET_FOLLOWING, SET_TWEETS_PP_TRUE, SET_MEDIA_PP_TRUE, SET_LIKES_PP_TRUE} = ACTIONS;
 
 export const DataReducer = (state, action) => {
 
@@ -47,6 +48,10 @@ export const DataReducer = (state, action) => {
 
         case SET_BOOKMARKS: {
             return {...state, bookmarks: [...action.payload]}
+        }
+
+        case TOGGLE_MODAL: {
+            return {...state, modal: !state.modal}
         }
 
         case SET_FOLLOWING: {

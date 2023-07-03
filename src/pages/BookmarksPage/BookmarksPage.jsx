@@ -38,7 +38,7 @@ export function BookmarksPage() {
 
     return (
         <>
-        <div className="bookmarks-page-container">
+        <div className="bookmarks-page-container" style={{overflowY: dataState.modal ? "hidden" : "visible", maxHeight: dataState.modal ? "100vh" : "none"}}>
             <TopNav pageName={"Bookmarks"}/>
             {bookMarkedPosts.map((post) => <PostCard post={post}/>)}
         </div>

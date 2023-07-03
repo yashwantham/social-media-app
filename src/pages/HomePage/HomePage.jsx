@@ -6,27 +6,35 @@ import { AllPostList } from "./HomePageComponents/AllPostsList/AllPostsList";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { ACTIONS } from "../../reducers/DataRedcuer";
 import { DataContext } from "../../contexts/DataProvider";
+import { CreateTweetModal } from "./CreateTweetModal";
 
 export function HomePage() {
 
-    const { RESET_LATEST_TRENDING } = ACTIONS;
+    const { RESET_LATEST_TRENDING  } = ACTIONS;
 
     const { authState } = useContext(AuthContext);
 
-    const {dispatchData} = useContext(DataContext);
+    const { dataState, dispatchData } = useContext(DataContext);
+
+    // const [modal, setModal] = useState(false);
 
     useEffect(() => {
-        dispatchData({type: RESET_LATEST_TRENDING})
+        dispatchData({ type: RESET_LATEST_TRENDING })
     }, [])
+
+    // const toggleModal = () => dispatchData({type: TOGGLE_MODAL})
 
     return (
         <>
-            <div className="home-page-container">
+
+            {/* Modal */}
+
+            <div className="home-page-container" style={{overflowY: dataState.modal ? "hidden" : "visible", maxHeight: dataState.modal ? "100vh" : "none"}}>
                 <TopNav pageName="Home" />
 
                 <div className="whats-happening-cotainer">
                     <div className="avatar-container-wh">
-                        <Avatar imgSrc={authState.userData.avatar} userId={authState.userData._id}/>
+                        <Avatar imgSrc={authState.userData.avatar} userId={authState.userData._id} />
                     </div>
                     <div className="input-n-post-container">
                         <div className="posttext-input-container">
@@ -35,7 +43,7 @@ export function HomePage() {
                         </div>
                         <div className="media-post-btns">
                             <div className="media-input-container">
-                                <label htmlFor="media-input"><i class="fa-regular fa-image img-icon"></i></label><input type="file" id="media-input" name="" className="choose-file"/>
+                                <label htmlFor="media-input"><i class="fa-regular fa-image img-icon"></i></label><input type="file" id="media-input" name="" className="choose-file" />
                             </div>
                             <div className="post-btn-container-wh">
                                 <button className="post-btn-wh">

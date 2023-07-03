@@ -27,7 +27,7 @@ const { RESET_LATEST_TRENDING } = ACTIONS;
 
     return (
         <>
-        <div className="explore-page-container">
+        <div className="explore-page-container" style={{overflowY: dataState.modal ? "hidden" : "visible", maxHeight: dataState.modal ? "100vh" : "none"}}>
             <TopNav pageName="Explore"/>
 
             {postsToDisplay.map((post) => <PostCard post={post}/>)}

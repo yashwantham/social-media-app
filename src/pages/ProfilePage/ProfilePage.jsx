@@ -7,6 +7,7 @@ import { faLocationDot, faCalendarDays } from "@fortawesome/free-solid-svg-icons
 import { DataContext } from "../../contexts/DataProvider";
 import { PostCard } from "../HomePage/HomePageComponents/PostCard/PostCard";
 import { ACTIONS } from "../../reducers/DataRedcuer";
+import axios from "axios";
 
 export function ProfilePage() {
 
@@ -39,13 +40,27 @@ export function ProfilePage() {
 
     const showLikes = () => dispatchData({ type: SET_LIKES_PP_TRUE })
 
+    // const getPostsOfThisUser = async () => {
+    //     try {
+    //         const response = await axios.get(`/api/posts/user/${authState.userData.username}`)
+    //         if(response.status === 200) {
+                
+    //         }
+    //         console.log({response})
+    //     }
+    //     catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+
     useEffect(() => {
         dispatchData({ type: SET_TWEETS_PP_TRUE });
+        // getPostsOfThisUser();
     }, [])
 
     return (
         <>
-            <div className="profile-page-container">
+            <div className="profile-page-container" style={{overflowY: dataState.modal ? "hidden" : "visible", maxHeight: dataState.modal ? "100vh" : "none"}}>
                 <TopNav pageName="Profile" />
 
                 <div className="header-profiledetails-container">

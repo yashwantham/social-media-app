@@ -70,7 +70,7 @@ export function OthersProfilePage() {
 
     return (
         <>
-           <div className="othersprofile-page-container">
+           <div className="othersprofile-page-container" style={{overflowY: dataState.modal ? "hidden" : "visible", maxHeight: dataState.modal ? "100vh" : "none"}}>
             <TopNav pageName="OthersProfile" userId={userId}/>
             
             <div className="header-profiledetails-container">

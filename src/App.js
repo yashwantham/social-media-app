@@ -10,19 +10,26 @@ import { SuggetionsRightAside } from "./components/SuggetionsRightAside/Suggetio
 import { RequiresAuth } from "./utils/RequiresAuth";
 import { LoginPage } from "./pages/AuthenticationPages/LoginPage/LoginPage";
 import { SignupPage } from "./pages/AuthenticationPages/SignupPage/SignupPage";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "./contexts/AuthProvider";
 import { OthersProfilePage } from "./pages/OthersProfilePage/OthersProfilePage";
+import { CreateTweetModal } from "./pages/HomePage/CreateTweetModal";
+import { DataContext } from "./contexts/DataProvider";
 
 function App() {
 
-  const {authState} = useContext(AuthContext)
+  const { authState } = useContext(AuthContext);
+  const { dataState } = useContext(DataContext);
 
   return (
     <div className="App">
+
       {/* <RequiresAuth> */}
-        {authState.isLoggedin && <SideNav />}
+      {authState.isLoggedin && <SideNav />}
       {/* </RequiresAuth> */}
+
+      {/* Create Tweet Modal */}
+      {dataState.modal && <CreateTweetModal/>}
 
       <Routes>
         <Route
@@ -57,13 +64,13 @@ function App() {
             </RequiresAuth>
           }
         />
-        <Route path={`/profile/:userId`} element={<OthersProfilePage/>}/>
+        <Route path={`/profile/:userId`} element={<OthersProfilePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage/>}/>
+        <Route path="/signup" element={<SignupPage />} />
       </Routes>
 
       {/* <RequiresAuth> */}
-       {authState.isLoggedin && <SuggetionsRightAside />}
+      {authState.isLoggedin && <SuggetionsRightAside />}
       {/* </RequiresAuth> */}
     </div>
   );
