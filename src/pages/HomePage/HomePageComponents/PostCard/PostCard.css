@@ -84,6 +84,15 @@
 .edit-post, .delete-post {
     padding: 0.5rem;
     font-weight: 600;
+    cursor: pointer;
+}
+
+.edit-post:hover {
+    background-color: var(--border-color);
+}
+
+.delete-post:hover {
+    background-color: var(--border-color);
 }
 
 .overlay-deleteedit-popup {

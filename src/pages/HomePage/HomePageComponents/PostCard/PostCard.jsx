@@ -10,6 +10,7 @@ import { successToastmessage } from "../../../../components/Toastmessage/success
 import { dislikePost, isPostLiked, likePost } from "../../../../utils/likeService";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import { NavLink } from "react-router-dom";
+import { deletePost } from "../../../../utils/postService";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 
@@ -57,6 +58,10 @@ export function PostCard({ post }) {
 
     const [showeditdelete, setShoweditdelete] = useState(false)
 
+    const deletePostHandler = () => {
+        deletePost(authToken, post._id, dispatchData)
+    }
+
     return (
         <>
             <div className="postcard-container">
@@ -98,13 +103,15 @@ export function PostCard({ post }) {
                     </div>
 
                     {showeditdelete && post.username === authState.userData.username && (
-                        <div className="editdelete-modal-container">
+                        <div className="editdelete-modal-overlay-container">
                             <div className="overlay-deleteedit-popup" onClick={() => setShoweditdelete(!showeditdelete)}></div>
-                            <div className="edit-post">
-                                Edit
-                            </div>
-                            <div className="delete-post">
-                                Delete
+                            <div className="editdelete-modal-container">
+                                <div className="edit-post">
+                                    Edit
+                                </div>
+                                <div className="delete-post" onClick={deletePostHandler}>
+                                    Delete
+                                </div>
                             </div>
                         </div>
                     )}
