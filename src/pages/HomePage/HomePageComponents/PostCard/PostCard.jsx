@@ -22,11 +22,11 @@ export function PostCard({ post }) {
 
     const { authState } = useContext(AuthContext);
 
-    const getAvatar = (postUsername) => dataState.usersList.find(({ username }) => postUsername === username).avatar
+    const getAvatar = (postUsername) => dataState?.usersList.find(({ username }) => postUsername === username).avatar
 
-    const getUserId = (postUsername) => dataState.usersList.find(({ username }) => postUsername === username)._id
+    const getUserId = (postUsername) => dataState?.usersList.find(({ username }) => postUsername === username)._id
 
-    const getCommentCount = (comments) => comments.reduce((acc, comm) => acc + 1, 0)
+    const getCommentCount = (comments) => comments?.reduce((acc, comm) => acc + 1, 0)
 
     const getPostedTime = (dateString) => {
         const date = new Date(dateString);

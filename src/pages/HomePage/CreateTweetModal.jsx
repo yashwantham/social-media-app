@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import ReactDOM from "react-dom";
 
 import { Avatar } from "../../components/Avatar/Avatar";
@@ -8,13 +8,26 @@ import { DataContext } from "../../contexts/DataProvider";
 import { ACTIONS } from "../../reducers/DataRedcuer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { createPost } from "../../utils/postService";
 
 export function CreateTweetModal() {
+
+    const authToken = localStorage.getItem("userToken")
 
     const { TOGGLE_MODAL } = ACTIONS;
 
     const { authState } = useContext(AuthContext);
     const { dispatchData } = useContext(DataContext);
+
+    const [posttext, setPosttext] = useState("");
+
+    const changeHandler = (e) => setPosttext(() => e.target.value); 
+
+    const createPostHandler = () => {
+        // console.log("tweet clicked")
+        createPost(authToken, posttext, dispatchData);
+        dispatchData({type: TOGGLE_MODAL});
+    }
 
     return ReactDOM.createPortal(
         <>
@@ -37,6 +50,7 @@ export function CreateTweetModal() {
                                 id=""
                                 className="posttext-wh"
                                 placeholder="What is happening?!"
+                                onChange={(e) => changeHandler(e)}
                             ></textarea>
                             {/* <input type="text" className="posttext-wh" placeholder="What is happening?!"/> */}
                         </div>
@@ -53,7 +67,7 @@ export function CreateTweetModal() {
                                 />
                             </div>
                             <div className="post-btn-container-wh">
-                                <button className="post-btn-wh">Tweet</button>
+                                <button className="post-btn-wh" onClick={createPostHandler}>Tweet</button>
                             </div>
                         </div>
                     </div>

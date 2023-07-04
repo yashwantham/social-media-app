@@ -22,11 +22,13 @@ export function ProfilePage() {
         postsToDisplay = postsToDisplay.filter(({ username }) => username === authState.userData.username)
     }
     else if (dataState.profilePageShow.media) {
-        postsToDisplay = postsToDisplay.filter(({ mediaURL, username }) => mediaURL.length !== 0 && username === authState.userData.username)
+        postsToDisplay = postsToDisplay.filter(({ mediaURL, username }) => mediaURL?.length !== 0 && username === authState.userData.username)
     }
     else if (dataState.profilePageShow.likes) {
         postsToDisplay = postsToDisplay.filter(({ likes }) => likes.likedBy.find(({ username }) => username === authState.userData.username))
     }
+
+    postsToDisplay = postsToDisplay.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
     const getJoinDate = (dt) => {
         const date = new Date(dt);
