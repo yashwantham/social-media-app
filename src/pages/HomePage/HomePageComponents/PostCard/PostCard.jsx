@@ -60,6 +60,7 @@ export function PostCard({ post }) {
 
     const deletePostHandler = () => {
         deletePost(authToken, post._id, dispatchData)
+        setShoweditdelete(!showeditdelete);
     }
 
     return (
