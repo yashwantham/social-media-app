@@ -25,7 +25,7 @@ export function CreateTweetModal() {
 
     const createPostHandler = () => {
         // console.log("tweet clicked")
-        createPost(authToken, posttext, dispatchData);
+        createPost(authToken, posttext, authState.userData, dispatchData);
         dispatchData({type: TOGGLE_MODAL});
     }
 
