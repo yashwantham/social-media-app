@@ -104,3 +104,23 @@ textarea {
 
 
 
+.post-btn-zerotext-wh {
+    all: unset;
+    min-width: 36px;
+    min-height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 9999px;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    /* color: #fff; */
+    background-color: var(--primary-color);
+    opacity: 0.5;
+}
+
+

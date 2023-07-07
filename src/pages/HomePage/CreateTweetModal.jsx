@@ -19,13 +19,13 @@ export function CreateTweetModal() {
     const { authState } = useContext(AuthContext);
     const { dispatchData } = useContext(DataContext);
 
-    const [posttext, setPosttext] = useState("");
+    const [postdata, setPostdata] = useState({content: "", postImage: ""});
 
-    const changeHandler = (e) => setPosttext(() => e.target.value); 
+    const changeHandler = (e) => setPostdata((postdata) => ({...postdata, content: e.target.value}))
 
     const createPostHandler = () => {
         // console.log("tweet clicked")
-        createPost(authToken, posttext, authState.userData, dispatchData);
+        createPost(authToken, postdata, authState.userData, dispatchData);
         dispatchData({type: TOGGLE_MODAL});
     }
 
@@ -67,7 +67,8 @@ export function CreateTweetModal() {
                                 />
                             </div>
                             <div className="post-btn-container-wh">
-                                <button className="post-btn-wh" onClick={createPostHandler}>Tweet</button>
+                                {postdata.content?.trim().length === 0 && <button className="post-btn-zerotext-wh">Tweet</button>}
+                                {postdata.content?.trim().length !== 0 && <button className="post-btn-wh" onClick={createPostHandler}>Tweet</button> }
                             </div>
                         </div>
                     </div>
