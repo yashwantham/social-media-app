@@ -131,7 +131,7 @@ export function PostCard({ post }) {
                             <i class="fa-regular fa-comment action-icon"></i>{getCommentCount(post.comments) > 0 && <span className="interaction-count">{getCommentCount(post.comments)}</span>}
                         </div>
                         <div className="bookmark-icon action-icon-container">
-                            {isPostBookmarked(post._id, dataState) ? <i class="fa-solid fa-bookmark action-icon bookmarked-icon" onClick={removeFromBookmarkHandler}></i> : <i class="fa-regular fa-bookmark action-icon" onClick={addToBookmarkHandler}></i>}
+                            {isPostBookmarked(post?._id, dataState) ? <i class="fa-solid fa-bookmark action-icon bookmarked-icon" onClick={removeFromBookmarkHandler}></i> : <i class="fa-regular fa-bookmark action-icon" onClick={addToBookmarkHandler}></i>}
                         </div>
                         <div className="share-icon action-icon-container">
                             {/* <i class="fa-sharp fa-solid fa-arrow-up-from-bracket action-icon"></i> */}

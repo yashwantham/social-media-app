@@ -56,7 +56,7 @@ export function OthersProfilePage() {
 
     useEffect(() => {
         dispatchData({ type: SET_TWEETS_PP_TRUE });
-    }, [])
+    }, [userId])
 
     const followHandler = (id, firstName, lastName) => {
         follow(id, authToken, dispatchData, dispatchAuth);
