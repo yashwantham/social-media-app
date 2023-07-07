@@ -13,8 +13,8 @@ export function Avatar({ imgSrc, userId }) {
         <>
             {authState.userData._id === userId ? (
                 <NavLink to={`/profile`}>
-                <img src={imgSrc} alt="" className="avatarimg" />
-            </NavLink>
+                    <img src={imgSrc} alt="" className="avatarimg" />
+                </NavLink>
             ) : (
                 <NavLink to={`/profile/${userId}`}>
                     <img src={imgSrc} alt="" className="avatarimg" />
