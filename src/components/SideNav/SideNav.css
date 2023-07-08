@@ -95,14 +95,45 @@ span {
     background-color: var(--primary-color);
 }
 
+.userdeets-n-logout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    position: relative;
+    top: 14rem;
+}
+
+.logout-option {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    font-weight: 700;
+    box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
+    border-radius: 16px;
+    background-color: rgba(255,255,255,1.00);
+    /* margin-bottom: 1rem; */
+    position: absolute;
+    bottom: 5rem;
+    left: 1.5rem;
+}
+
+.logout-option:hover {
+    background-color: rgb(247, 249, 249);
+    /* background-color: #cce9fc; */
+    cursor: pointer;
+}
+
 .userdeets-sn-container {
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     align-items: center;
     padding: 12px;
     border-radius: 9999px;
-    position: relative;
-    top: 14rem;
+    /* position: relative;
+    top: 14rem; */
     right: 1rem;
 }
 .userdeets-sn-container:hover {

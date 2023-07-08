@@ -6,6 +6,8 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 import { successToastmessage } from "../components/Toastmessage/successToastmessage";
+import { warningToastmessage } from "../components/Toastmessage/warningToastmessage";
+
 
 export const AuthContext = createContext();
 
@@ -13,7 +15,7 @@ export function AuthProvider({children}) {
 
     const navigate = useNavigate(); 
 
-    const { SET_LOGIN_TRUE, SET_LOGIN_FALSE, SET_USER_DATA} = ACTIONS;
+    const { SET_LOGIN_TRUE, SET_LOGIN_FALSE, SET_USER_DATA, RESET_AUTH} = ACTIONS;
 
     const [authState, dispatchAuth] = useReducer(AuthReducer, {isLoggedin: false, userData: {}})
 
@@ -53,11 +55,18 @@ export function AuthProvider({children}) {
         }
     }
 
+    const logoutAuthUser = () => {
+        localStorage.removeItem("userToken");
+        dispatchAuth({type: RESET_AUTH});
+
+        warningToastmessage("Logged out successfully!");
+    }
+
     // console.log("authState", authState)
 
     return (
         <>
-            <AuthContext.Provider value={{authState, dispatchAuth, signupAuthUser, loginAuthUser}}>{children}</AuthContext.Provider>
+            <AuthContext.Provider value={{authState, dispatchAuth, signupAuthUser, loginAuthUser, logoutAuthUser}}>{children}</AuthContext.Provider>
             <ToastContainer/>
         </>
     )

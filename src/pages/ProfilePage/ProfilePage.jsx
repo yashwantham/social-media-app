@@ -7,7 +7,6 @@ import { faLocationDot, faCalendarDays } from "@fortawesome/free-solid-svg-icons
 import { DataContext } from "../../contexts/DataProvider";
 import { PostCard } from "../HomePage/HomePageComponents/PostCard/PostCard";
 import { ACTIONS } from "../../reducers/DataRedcuer";
-import axios from "axios";
 
 export function ProfilePage() {
 
@@ -68,7 +67,7 @@ export function ProfilePage() {
                 <div className="header-profiledetails-container">
 
                     <div className="header-container">
-                        {authState.userData.header.length !== 0 && <img src={authState.userData.header} alt="" className="header" />}
+                        {authState.userData?.header?.length !== 0 && <img src={authState.userData.header} alt="" className="header" />}
                     </div>
 
                     <div className="profiledetails-avatar-editbtn-container">

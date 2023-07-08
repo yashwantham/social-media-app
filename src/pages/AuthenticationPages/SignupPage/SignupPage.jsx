@@ -2,10 +2,15 @@ import { useContext, useState } from "react";
 import "./SignupPage.css";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
+// import { DataContext } from "../../../contexts/DataProvider";
+// import { ACTIONS } from "../../../reducers/DataRedcuer";
 
 export function SignupPage() {
 
+    // const { RESET_DATA } = ACTIONS;
+
     const { signupAuthUser } = useContext(AuthContext);
+    // const { dispatchData } = useContext(DataContext);
 
     const [userSignupData, setUserSignupData] = useState({ firstName: "", lastName: "", email: "", username: "", password: "", confirmPassword: "" })
     const [showpassword, setShowpassword] = useState({ type: "password", hidden: true });
@@ -29,6 +34,7 @@ export function SignupPage() {
     const signupSubmit = (e) => {
         e.preventDefault();
         if(userSignupData.password === userSignupData.confirmPassword) {
+            // dispatchData({type: RESET_DATA});
             setFormError(false);
             signupAuthUser(userSignupData);
         }
