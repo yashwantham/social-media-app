@@ -6,7 +6,6 @@ import { AllPostList } from "./HomePageComponents/AllPostsList/AllPostsList";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { ACTIONS } from "../../reducers/DataRedcuer";
 import { DataContext } from "../../contexts/DataProvider";
-import { CreateTweetModal } from "./CreateTweetModal";
 import { createPost } from "../../utils/postService";
 
 export function HomePage() {
@@ -14,7 +13,7 @@ export function HomePage() {
 
     const authToken = localStorage.getItem("userToken");
 
-    const { RESET_LATEST_TRENDING } = ACTIONS;
+    const { RESET_LATEST_TRENDING, SET_LATEST_TRUE } = ACTIONS;
 
     const { authState } = useContext(AuthContext);
 
@@ -32,10 +31,16 @@ export function HomePage() {
 
     const changeHandler = (e) => setPostdata((postdata) => ({ ...postdata, content: e.target.value }))
 
+    const imageUploadHandler = (e) => {
+        const imageUrl = URL.createObjectURL(e.target.files[0]);
+        setPostdata((postdata) => ({ ...postdata, postImage: imageUrl }));
+    }
+
     const createPostHandler = () => {
         // console.log("tweet clicked")
         createPost(authToken, postdata, authState.userData, dispatchData);
-        setPostdata(() => ({ content: "", postImage: "" }))
+        setPostdata(() => ({ content: "", postImage: "" }));
+        dispatchData({ type: SET_LATEST_TRUE });
     }
 
     return (
@@ -52,17 +57,22 @@ export function HomePage() {
                     </div>
                     <div className="input-n-post-container">
                         <div className="posttext-input-container">
-                            <textarea name="" id="" className="posttext-wh" placeholder="What is happening?!" value={postdata.content} onChange={(e) => changeHandler(e)}></textarea>
+                            <div className="textarea-container-post">
+                                <textarea name="" id="" className="posttext-wh" placeholder="What is happening?!" value={postdata.content} onChange={(e) => changeHandler(e)}></textarea>
+                            </div>
                             {/* <input type="text" className="posttext-wh" placeholder="What is happening?!"/> */}
+                            {postdata.postImage.length !== 0 && <div className="posting-img">
+                                <img src={postdata.postImage} alt="" className="selectedimgtopost"/>
+                            </div>}
                         </div>
                         <div className="media-post-btns">
-                            {/* <div className="media-input-container">
+                            <div className="media-input-container">
                                 <label htmlFor="media-input"><i class="fa-regular fa-image img-icon"></i></label>
-                                <input type="file" id="media-input" name="" className="choose-file" />
-                            </div> */}
+                                <input type="file" id="media-input" name="" className="choose-file" onChange={imageUploadHandler} />
+                            </div>
                             <div className="post-btn-container-wh">
-                                {postdata.content?.trim().length === 0 && <button className="post-btn-zerotext-wh">Tweet</button>}
-                                {postdata.content?.trim().length !== 0 && <button className="post-btn-wh" onClick={createPostHandler}>Tweet</button>}
+                                {postdata.content?.trim().length === 0 && postdata.postImage.length === 0 && <button className="post-btn-zerotext-wh">Tweet</button>}
+                                {(postdata.content?.trim().length !== 0 || postdata.postImage.length !== 0) && <button className="post-btn-wh" onClick={createPostHandler}>Tweet</button>}
                             </div>
                         </div>
                     </div>

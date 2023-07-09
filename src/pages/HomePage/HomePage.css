@@ -57,6 +57,17 @@ textarea {
     border-bottom: 1px solid  rgb(223, 225, 225);
 }
 
+
+.selectedimgtopost {
+    width: 100%;
+    max-height: 35rem;
+    /* object-fit: fill; */
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 14px;
+    border: 1px solid rgb(207, 217, 222);
+}
+
 .media-post-btns {
     display: flex;
     justify-content: space-between;
@@ -122,5 +133,4 @@ textarea {
     background-color: var(--primary-color);
     opacity: 0.5;
 }
-
 
