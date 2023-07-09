@@ -9,6 +9,7 @@ import { ACTIONS } from "../../reducers/DataRedcuer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { createPost } from "../../utils/postService";
+import { successToastmessage } from "../../components/Toastmessage/successToastmessage";
 
 export function CreateTweetModal() {
 
@@ -28,11 +29,16 @@ export function CreateTweetModal() {
         setPostdata((postdata) => ({ ...postdata, postImage: imageUrl }));
     }
 
+    const removeImageHandler = (e) => {
+        setPostdata((postdata) => ({ ...postdata, postImage: "" }));
+    }
+
     const createPostHandler = () => {
         // console.log("tweet clicked")
         createPost(authToken, postdata, authState.userData, dispatchData);
         dispatchData({ type: TOGGLE_MODAL });
         dispatchData({ type: SET_LATEST_TRUE });
+        successToastmessage("Your Tweet was sent");
     }
 
     return ReactDOM.createPortal(
@@ -56,7 +62,10 @@ export function CreateTweetModal() {
                             </div>
                             {/* <input type="text" className="posttext-wh" placeholder="What is happening?!"/> */}
                             {postdata.postImage.length !== 0 && <div className="posting-img">
-                                <img src={postdata.postImage} alt="" className="selectedimgtopost" />
+                                <img src={postdata.postImage} alt="" className="selectedingtopost" />
+                                <div className="remove-image-container" onClick={removeImageHandler}>
+                                    <FontAwesomeIcon icon={faXmark} className="removeimageicon" />
+                                </div>
                             </div>}
                         </div>
                         <div className="media-post-btns">

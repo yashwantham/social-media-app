@@ -31,5 +31,5 @@ export const dislikePost = async (authToken, id, dispatchData) => {
 }
 
 export const isPostLiked = (post, authState) => {
-    return post.likes.likedBy.find(({username}) => username === authState.userData.username) ? true : false
+    return post?.likes?.likedBy.find(({username}) => username === authState.userData.username) ? true : false
 }

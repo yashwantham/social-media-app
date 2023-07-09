@@ -7,6 +7,10 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { ACTIONS } from "../../reducers/DataRedcuer";
 import { DataContext } from "../../contexts/DataProvider";
 import { createPost } from "../../utils/postService";
+import { successToastmessage } from "../../components/Toastmessage/successToastmessage";
+import { ToastContainer } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export function HomePage() {
 
@@ -36,11 +40,16 @@ export function HomePage() {
         setPostdata((postdata) => ({ ...postdata, postImage: imageUrl }));
     }
 
+    const removeImageHandler = (e) => {
+        setPostdata((postdata) => ({ ...postdata, postImage: "" }));
+    }
+
     const createPostHandler = () => {
         // console.log("tweet clicked")
         createPost(authToken, postdata, authState.userData, dispatchData);
         setPostdata(() => ({ content: "", postImage: "" }));
         dispatchData({ type: SET_LATEST_TRUE });
+        successToastmessage("Your Tweet was sent");
     }
 
     return (
@@ -62,7 +71,10 @@ export function HomePage() {
                             </div>
                             {/* <input type="text" className="posttext-wh" placeholder="What is happening?!"/> */}
                             {postdata.postImage.length !== 0 && <div className="posting-img">
-                                <img src={postdata.postImage} alt="" className="selectedimgtopost"/>
+                                <img src={postdata.postImage} alt="" className="selectedingtopost" />
+                                <div className="remove-image-container" onClick={removeImageHandler}>
+                                    <FontAwesomeIcon icon={faXmark} className="removeimageicon" />
+                                </div>
                             </div>}
                         </div>
                         <div className="media-post-btns">
@@ -82,6 +94,7 @@ export function HomePage() {
 
                 <AllPostList />
             </div>
+            <ToastContainer />
         </>
     )
 }

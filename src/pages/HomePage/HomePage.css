@@ -57,8 +57,11 @@ textarea {
     border-bottom: 1px solid  rgb(223, 225, 225);
 }
 
+.posting-img {
+    position: relative;
+}
 
-.selectedimgtopost {
+.selectedingtopost {
     width: 100%;
     max-height: 35rem;
     /* object-fit: fill; */
@@ -74,6 +77,24 @@ textarea {
     align-items: center;
     margin-top: 12px;
     width: 100%;
+}
+
+.remove-image-container {
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.5rem;
+    backdrop-filter: blur(4px);
+    background-color: rgba(15, 20, 25, 0.75);
+    color: #fff;
+    top: 4px;
+    right: 4px;
+    min-height: 32px;
+    min-width: 32px;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .img-icon {

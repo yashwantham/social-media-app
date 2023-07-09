@@ -29,9 +29,9 @@ export function PostCard({ post }) {
     const [editmodal, setEditmodal] = useState(false); //post edit modal
     const [showeditdelete, setShoweditdelete] = useState(false); //post edit delete modal
 
-    const getAvatar = (postUsername) => dataState?.usersList.find(({ username }) => postUsername === username).avatar
+    const getAvatar = (postUsername) => dataState?.usersList.find(({ username }) => postUsername === username)?.avatar
 
-    const getUserId = (postUsername) => dataState?.usersList.find(({ username }) => postUsername === username)._id
+    const getUserId = (postUsername) => dataState?.usersList.find(({ username }) => postUsername === username)?._id
 
     const getCommentCount = (comments) => comments?.reduce((acc, comm) => acc + 1, 0)
 
@@ -81,7 +81,7 @@ export function PostCard({ post }) {
             <div className="postcard-container">
 
                 <div className="avatar-container">
-                    <Avatar imgSrc={getAvatar(post.username)} userId={getUserId(post.username)} />
+                    <Avatar imgSrc={getAvatar(post?.username)} userId={getUserId(post?.username)} />
                 </div>
 
                 <div className="usernpost-container">
@@ -90,24 +90,24 @@ export function PostCard({ post }) {
 
                         <div className="userndate-container">
                             {/* <strong>{post.name}</strong> @{post.username} · {post.createdAt} */}
-                            <NavLink to={getUserId(post.username) === authState.userData._id ? `/profile` : `/profile/${getUserId(post.username)}`}>
+                            <NavLink to={getUserId(post?.username) === authState?.userData?._id ? `/profile` : `/profile/${getUserId(post?.username)}`}>
                                 <span className="name">
                                     {/* <strong>{post.name}</strong> */}
-                                    {post.name}
+                                    {post?.name}
                                 </span>
                                 <span className="username">
-                                    @{post.username}
+                                    @{post?.username}
                                 </span>
                             </NavLink>
                             <span className="dot">
                                 ·
                             </span>
                             <span className="created-date">
-                                {getPostedTime(post.createdAt)}
+                                {getPostedTime(post?.createdAt)}
                             </span>
                         </div>
                         <div className="editdelete-opener">
-                            {post.username === authState.userData.username && (
+                            {post?.username === authState?.userData?.username && (
                                 <div className="deletepostcontainer">
                                     <i class="fa-solid fa-ellipsis threedots-icon" onClick={() => setShoweditdelete(!showeditdelete)}></i>
                                 </div>
@@ -116,7 +116,7 @@ export function PostCard({ post }) {
 
                     </div>
 
-                    {showeditdelete && post.username === authState.userData.username && (
+                    {showeditdelete && post?.username === authState?.userData?.username && (
                         <div className="editdelete-modal-overlay-container">
                             <div className="overlay-deleteedit-popup" onClick={() => setShoweditdelete(!showeditdelete)}></div>
                             <div className="editdelete-modal-container">
@@ -131,17 +131,17 @@ export function PostCard({ post }) {
                     )}
 
                     <div className="content-container">
-                        <p>{post.content}</p>
+                        <p>{post?.content}</p>
                     </div>
                     <div className="media-container">
-                        {post.mediaURL && <img src={post.mediaURL} alt="" className="post-media" />}
+                        {post?.mediaURL && <img src={post?.mediaURL} alt="" className="post-media" />}
                     </div>
                     <div className="likecommentbook-container">
                         <div className="like-icon action-icon-container">
-                            {isPostLiked(post, authState) ? <i class="fa-solid fa-heart action-icon liked-icon" onClick={dislikeHandler}></i> : <i class="fa-regular fa-heart action-icon" onClick={likeHandler}></i>} {post.likes.likeCount > 0 && <span className="interaction-count">{post.likes.likeCount}</span>}
+                            {isPostLiked(post, authState) ? <i class="fa-solid fa-heart action-icon liked-icon" onClick={dislikeHandler}></i> : <i class="fa-regular fa-heart action-icon" onClick={likeHandler}></i>} {post?.likes.likeCount > 0 && <span className="interaction-count">{post?.likes?.likeCount}</span>}
                         </div>
                         <div className="comment-icon action-icon-container">
-                            <i class="fa-regular fa-comment action-icon"></i>{getCommentCount(post.comments) > 0 && <span className="interaction-count">{getCommentCount(post.comments)}</span>}
+                            <i class="fa-regular fa-comment action-icon"></i>{getCommentCount(post?.comments) > 0 && <span className="interaction-count">{getCommentCount(post?.comments)}</span>}
                         </div>
                         <div className="bookmark-icon action-icon-container">
                             {isPostBookmarked(post?._id, dataState) ? <i class="fa-solid fa-bookmark action-icon bookmarked-icon" onClick={removeFromBookmarkHandler}></i> : <i class="fa-regular fa-bookmark action-icon" onClick={addToBookmarkHandler}></i>}

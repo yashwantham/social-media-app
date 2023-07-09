@@ -146,7 +146,7 @@ export const posts = [
   {
     _id:  uuid(),
     content: "Treble Winners!!",
-    mediaURL: "https://res.cloudinary.com/ddqytua2y/image/upload/v1686988649/Social-media-app-assets/352982959_252798630690368_345468344761662508_n_aaumgb.jpg",
+    mediaURL: "https://res.cloudinary.com/ddqytua2y/image/upload/v1688936832/Social-media-app-assets/lqbvpvqic32ymdegxpnx.jpg",
     likes: {
       likeCount: 2,
       likedBy: [],

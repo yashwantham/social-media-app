@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { createPost, editPost, uploadImageHandle } from "../../utils/postService";
 
-export function EditTweetModal({editingPostId, setEditmodal, setShoweditdelete}) {
+export function EditTweetModal({ editingPostId, setEditmodal, setShoweditdelete }) {
 
     // console.log({editingPostId})
 
@@ -22,11 +22,20 @@ export function EditTweetModal({editingPostId, setEditmodal, setShoweditdelete})
     const { authState } = useContext(AuthContext);
     const { dataState, dispatchData } = useContext(DataContext);
 
-    const editingPost = dataState.allPosts.find(({_id}) => _id === editingPostId)
+    const editingPost = dataState.allPosts.find(({ _id }) => _id === editingPostId)
 
-    const [postdata, setPostdata] = useState({...editingPost});
+    const [postdata, setPostdata] = useState({ ...editingPost });
 
     const changeHandler = (e) => setPostdata((postdata) => ({ ...postdata, content: e.target.value }))
+
+    const imageUploadHandler = (e) => {
+        const imageUrl = URL.createObjectURL(e.target.files[0]);
+        setPostdata((postdata) => ({ ...postdata, mediaURL: imageUrl }));
+    }
+
+    const removeImageHandler = (e) => {
+        setPostdata((postdata) => ({ ...postdata, mediaURL: "" }));
+    }
 
     const editPostHandler = () => {
         // console.log("tweet clicked")
@@ -57,18 +66,19 @@ export function EditTweetModal({editingPostId, setEditmodal, setShoweditdelete})
                     </div>
                     <div className="input-n-post-container">
                         <div className="posttext-input-container">
-                            <textarea
-                                name=""
-                                id=""
-                                className="posttext-wh"
-                                placeholder="What is happening?!"
-                                value={postdata.content}
-                                onChange={(e) => changeHandler(e)}
-                            ></textarea>
+                            <div className="textarea-container-post">
+                                <textarea name="" id="" className="posttext-wh" placeholder="What is happening?!" value={postdata.content} onChange={(e) => changeHandler(e)}></textarea>
+                            </div>
                             {/* <input type="text" className="posttext-wh" placeholder="What is happening?!"/> */}
+                            {postdata.mediaURL.length !== 0 && <div className="posting-img">
+                                <img src={postdata.mediaURL} alt="" className="selectedingtopost" />
+                                <div className="remove-image-container" onClick={removeImageHandler}>
+                                    <FontAwesomeIcon icon={faXmark} className="removeimageicon" />
+                                </div>
+                            </div>}
                         </div>
                         <div className="media-post-btns">
-                            {/* <div className="media-input-container">
+                            <div className="media-input-container">
                                 <label htmlFor="media-input-mdl">
                                     <i className="fa-regular fa-image img-icon"></i>
                                 </label>
@@ -77,9 +87,9 @@ export function EditTweetModal({editingPostId, setEditmodal, setShoweditdelete})
                                     id="media-input-mdl"
                                     name="media-input-mdl"
                                     className="choose-file"
-                                    onChange={(e) => uploadImageHandle(e.target.files[0])}
+                                    onChange={imageUploadHandler}
                                 />
-                            </div> */}
+                            </div>
                             <div className="post-btn-container-wh">
                                 {postdata.content?.trim().length === 0 && <button className="post-btn-zerotext-wh">Tweet</button>}
                                 {postdata.content?.trim().length !== 0 && <button className="post-btn-wh" onClick={editPostHandler}>Save</button>}
