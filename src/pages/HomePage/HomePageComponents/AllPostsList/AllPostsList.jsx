@@ -2,12 +2,16 @@ import { useContext } from "react";
 import "./AllPostsList.css";
 import { DataContext } from "../../../../contexts/DataProvider";
 import { PostCard } from "../PostCard/PostCard";
+import { AuthContext } from "../../../../contexts/AuthProvider";
 
 export function AllPostList() {
 
     const {dataState} = useContext(DataContext);
+    const {authState} = useContext(AuthContext);
 
     let postsToDisplay = [...dataState.allPosts];
+
+    postsToDisplay = dataState.allPosts.filter(({username}) => username === authState.userData.username)
 
     if(dataState.showPostsBy.latest) { //sort by date
         postsToDisplay = postsToDisplay.sort((a, b) => {

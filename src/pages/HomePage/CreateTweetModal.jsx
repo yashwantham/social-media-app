@@ -14,7 +14,7 @@ export function CreateTweetModal() {
 
     const authToken = localStorage.getItem("userToken")
 
-    const { TOGGLE_MODAL } = ACTIONS;
+    const { TOGGLE_MODAL, SET_LATEST_TRUE } = ACTIONS;
 
     const { authState } = useContext(AuthContext);
     const { dispatchData } = useContext(DataContext);
@@ -27,6 +27,7 @@ export function CreateTweetModal() {
         // console.log("tweet clicked")
         createPost(authToken, postdata, authState.userData, dispatchData);
         dispatchData({ type: TOGGLE_MODAL });
+        dispatchData({type: SET_LATEST_TRUE});
     }
 
     return ReactDOM.createPortal(
