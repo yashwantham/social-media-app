@@ -100,7 +100,7 @@ export function SuggetionsRightAside() {
                 <div className="suggestionsrightaside-container">
                     <h2>Who to follow</h2>
                     {suggestionsList.map(({ _id, firstName, lastName, username, avatar }) => (
-                        <div className="suggesteduser-container">
+                        <div className="suggesteduser-container" key={_id}>
 
                             <div className="avatar-sugg-container">
                                 <Avatar imgSrc={avatar} userId={_id} />

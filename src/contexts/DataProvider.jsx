@@ -14,7 +14,7 @@ export function DataProvider({ children }) {
     const authToken = localStorage.getItem("userToken");
 
     const [dataState, dispatchData] = useReducer(DataReducer, { usersList: [], allPosts: [], showPostsBy: {latest: false, trending: false}, bookmarks:[], followers: [],
-        following: [], modal: false, profilePageShow: {tweets: true, media: false, likes: false} })
+        following: [], modal: false, edittweetmodal: false, profilePageShow: {tweets: true, media: false, likes: false} })
 
     console.log("dataState", dataState)
 

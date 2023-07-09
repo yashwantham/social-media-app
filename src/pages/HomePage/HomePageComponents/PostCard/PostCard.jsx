@@ -11,16 +11,23 @@ import { dislikePost, isPostLiked, likePost } from "../../../../utils/likeServic
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import { NavLink } from "react-router-dom";
 import { deletePost } from "../../../../utils/postService";
+import { EditTweetModal } from "../../EditTweetModal";
+import { ACTIONS } from "../../../../reducers/DataRedcuer";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 
 export function PostCard({ post }) {
+
+    // console.log({post})
 
     const authToken = localStorage.getItem("userToken");
 
     const { dataState, dispatchData } = useContext(DataContext);
 
     const { authState } = useContext(AuthContext);
+    
+    const [editmodal, setEditmodal] = useState(false);
+    const [showeditdelete, setShoweditdelete] = useState(false)
 
     const getAvatar = (postUsername) => dataState?.usersList.find(({ username }) => postUsername === username).avatar
 
@@ -56,15 +63,21 @@ export function PostCard({ post }) {
         dislikePost(authToken, post._id, dispatchData);
     }
 
-    const [showeditdelete, setShoweditdelete] = useState(false)
 
     const deletePostHandler = () => {
         deletePost(authToken, post._id, dispatchData)
         setShoweditdelete(!showeditdelete);
     }
 
+    const editPostHandler = () => {
+        // dispatchData({type: TOGGLE_EDIT_MODAL})
+        setEditmodal(true)
+    }
+
     return (
         <>
+            {editmodal && <EditTweetModal editingPostId={post._id} setEditmodal={setEditmodal} setShoweditdelete={setShoweditdelete}/> }
+
             <div className="postcard-container">
 
                 <div className="avatar-container">
@@ -107,7 +120,7 @@ export function PostCard({ post }) {
                         <div className="editdelete-modal-overlay-container">
                             <div className="overlay-deleteedit-popup" onClick={() => setShoweditdelete(!showeditdelete)}></div>
                             <div className="editdelete-modal-container">
-                                <div className="edit-post">
+                                <div className="edit-post" onClick={editPostHandler}>
                                     Edit
                                 </div>
                                 <div className="delete-post" onClick={deletePostHandler}>

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Avatar } from "../../components/Avatar/Avatar";
 import { TopNav } from "../../components/TopNav/TopNav";
 import "./HomePage.css";
@@ -7,10 +7,14 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { ACTIONS } from "../../reducers/DataRedcuer";
 import { DataContext } from "../../contexts/DataProvider";
 import { CreateTweetModal } from "./CreateTweetModal";
+import { createPost } from "../../utils/postService";
 
 export function HomePage() {
 
-    const { RESET_LATEST_TRENDING  } = ACTIONS;
+
+    const authToken = localStorage.getItem("userToken");
+
+    const { RESET_LATEST_TRENDING } = ACTIONS;
 
     const { authState } = useContext(AuthContext);
 
@@ -24,12 +28,22 @@ export function HomePage() {
 
     // const toggleModal = () => dispatchData({type: TOGGLE_MODAL})
 
+    const [postdata, setPostdata] = useState({ content: "", postImage: "" });
+
+    const changeHandler = (e) => setPostdata((postdata) => ({ ...postdata, content: e.target.value }))
+
+    const createPostHandler = () => {
+        // console.log("tweet clicked")
+        createPost(authToken, postdata, authState.userData, dispatchData);
+        setPostdata(() => ({ content: "", postImage: "" }))
+    }
+
     return (
         <>
 
             {/* Modal */}
 
-            <div className="home-page-container" style={{overflowY: dataState.modal ? "hidden" : "visible", maxHeight: dataState.modal ? "100vh" : "none"}}>
+            <div className="home-page-container" style={{ overflowY: dataState.modal ? "hidden" : "visible", maxHeight: dataState.modal ? "100vh" : "none" }}>
                 <TopNav pageName="Home" />
 
                 <div className="whats-happening-cotainer">
@@ -38,17 +52,17 @@ export function HomePage() {
                     </div>
                     <div className="input-n-post-container">
                         <div className="posttext-input-container">
-                            <textarea name="" id="" className="posttext-wh" placeholder="What is happening?!"></textarea>
+                            <textarea name="" id="" className="posttext-wh" placeholder="What is happening?!" value={postdata.content} onChange={(e) => changeHandler(e)}></textarea>
                             {/* <input type="text" className="posttext-wh" placeholder="What is happening?!"/> */}
                         </div>
                         <div className="media-post-btns">
-                            <div className="media-input-container">
-                                <label htmlFor="media-input"><i class="fa-regular fa-image img-icon"></i></label><input type="file" id="media-input" name="" className="choose-file" />
-                            </div>
+                            {/* <div className="media-input-container">
+                                <label htmlFor="media-input"><i class="fa-regular fa-image img-icon"></i></label>
+                                <input type="file" id="media-input" name="" className="choose-file" />
+                            </div> */}
                             <div className="post-btn-container-wh">
-                                <button className="post-btn-wh">
-                                    Tweet
-                                </button>
+                                {postdata.content?.trim().length === 0 && <button className="post-btn-zerotext-wh">Tweet</button>}
+                                {postdata.content?.trim().length !== 0 && <button className="post-btn-wh" onClick={createPostHandler}>Tweet</button>}
                             </div>
                         </div>
                     </div>

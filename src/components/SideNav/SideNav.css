@@ -23,9 +23,10 @@
 }
 
 .app-logo-name {
+    text-decoration: none;
     font-family: 'Pacifico', cursive;
     font-size: 2rem;
-    font-weight: 600;
+    /* font-weight: 600; */
     color: var(--primary-color);
 }
 

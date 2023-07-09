@@ -27,7 +27,7 @@ export function AllPostList() {
 
     return (
         <>
-         {postsToDisplay.map((post) => <PostCard post={post}/>)}
+         {postsToDisplay.map((post) => <PostCard post={post} key={post._id}/>)}
         </>
     )
 }
