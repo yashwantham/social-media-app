@@ -62,7 +62,7 @@ export function CreateTweetModal() {
                             </div>
                             {/* <input type="text" className="posttext-wh" placeholder="What is happening?!"/> */}
                             {postdata.postImage.length !== 0 && <div className="posting-img">
-                                <img src={postdata.postImage} alt="" className="selectedingtopost" />
+                                <img  src={postdata.postImage} alt="" className="selectedingtopost" />
                                 <div className="remove-image-container" onClick={removeImageHandler}>
                                     <FontAwesomeIcon icon={faXmark} className="removeimageicon" />
                                 </div>
@@ -74,6 +74,7 @@ export function CreateTweetModal() {
                                     <i className="fa-regular fa-image img-icon"></i>
                                 </label>
                                 <input
+                                    key={postdata.postImage}
                                     type="file"
                                     id="media-input-mdl"
                                     name="media-input-mdl"

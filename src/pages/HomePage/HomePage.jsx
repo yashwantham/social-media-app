@@ -38,10 +38,12 @@ export function HomePage() {
     const imageUploadHandler = (e) => {
         const imageUrl = URL.createObjectURL(e.target.files[0]);
         setPostdata((postdata) => ({ ...postdata, postImage: imageUrl }));
+        console.log("image uploaded", postdata);
     }
 
     const removeImageHandler = (e) => {
         setPostdata((postdata) => ({ ...postdata, postImage: "" }));
+        // URL.revokeObjectURL(postdata.postImage)
     }
 
     const createPostHandler = () => {
@@ -71,7 +73,7 @@ export function HomePage() {
                             </div>
                             {/* <input type="text" className="posttext-wh" placeholder="What is happening?!"/> */}
                             {postdata.postImage.length !== 0 && <div className="posting-img">
-                                <img src={postdata.postImage} alt="" className="selectedingtopost" />
+                                <img src={postdata.postImage} alt="" className="selectedingtopost"/>
                                 <div className="remove-image-container" onClick={removeImageHandler}>
                                     <FontAwesomeIcon icon={faXmark} className="removeimageicon" />
                                 </div>
@@ -80,7 +82,7 @@ export function HomePage() {
                         <div className="media-post-btns">
                             <div className="media-input-container">
                                 <label htmlFor="media-input"><i class="fa-regular fa-image img-icon"></i></label>
-                                <input type="file" id="media-input" name="" className="choose-file" onChange={imageUploadHandler} />
+                                <input key={postdata.postImage} type="file" id="media-input" name="" className="choose-file" onChange={imageUploadHandler}/>
                             </div>
                             <div className="post-btn-container-wh">
                                 {postdata.content?.trim().length === 0 && postdata.postImage.length === 0 && <button className="post-btn-zerotext-wh">Tweet</button>}

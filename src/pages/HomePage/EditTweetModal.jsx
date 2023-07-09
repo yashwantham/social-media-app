@@ -71,7 +71,7 @@ export function EditTweetModal({ editingPostId, setEditmodal, setShoweditdelete 
                             </div>
                             {/* <input type="text" className="posttext-wh" placeholder="What is happening?!"/> */}
                             {postdata.mediaURL.length !== 0 && <div className="posting-img">
-                                <img src={postdata.mediaURL} alt="" className="selectedingtopost" />
+                                <img  src={postdata.mediaURL} alt="" className="selectedingtopost" />
                                 <div className="remove-image-container" onClick={removeImageHandler}>
                                     <FontAwesomeIcon icon={faXmark} className="removeimageicon" />
                                 </div>
@@ -83,6 +83,7 @@ export function EditTweetModal({ editingPostId, setEditmodal, setShoweditdelete 
                                     <i className="fa-regular fa-image img-icon"></i>
                                 </label>
                                 <input
+                                    key={postdata.postImage}
                                     type="file"
                                     id="media-input-mdl"
                                     name="media-input-mdl"
