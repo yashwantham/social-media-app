@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TopNav } from "../../components/TopNav/TopNav";
 import { AuthContext } from "../../contexts/AuthProvider";
 import "./ProfilePage.css";
@@ -7,6 +7,7 @@ import { faLocationDot, faCalendarDays } from "@fortawesome/free-solid-svg-icons
 import { DataContext } from "../../contexts/DataProvider";
 import { PostCard } from "../HomePage/HomePageComponents/PostCard/PostCard";
 import { ACTIONS } from "../../reducers/DataRedcuer";
+import { EditProfileDetailsModal } from "./EditProfileDetailsModal";
 
 export function ProfilePage() {
 
@@ -59,10 +60,13 @@ export function ProfilePage() {
         // getPostsOfThisUser();
     }, [])
 
+    const [editprofdmodal, setEditprofdmodal] = useState(false);
+
     return (
         <>
+            {editprofdmodal && <EditProfileDetailsModal setEditprofdmodal={setEditprofdmodal}/>}
             <div className="profile-page-container" style={{overflowY: dataState.modal ? "hidden" : "visible", maxHeight: dataState.modal ? "100vh" : "none"}}>
-                <TopNav pageName="Profile" />
+                <TopNav pageName="Profile" editprofdmodal={editprofdmodal}/>
 
                 <div className="header-profiledetails-container">
 
@@ -77,7 +81,7 @@ export function ProfilePage() {
                                 <img src={authState.userData.avatar} alt="" className="avatart-pp" />
                             </div>
                             <div className="editprofile-btn-container">
-                                <button className="editprofile-btn">
+                                <button className="editprofile-btn" onClick={() => setEditprofdmodal(true)}>
                                     Edit profile
                                 </button>
                             </div>

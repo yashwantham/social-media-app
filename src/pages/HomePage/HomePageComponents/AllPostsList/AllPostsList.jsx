@@ -11,7 +11,9 @@ export function AllPostList() {
 
     let postsToDisplay = [...dataState.allPosts];
 
-    postsToDisplay = dataState.allPosts.filter(({username}) => username === authState.userData.username)
+    const isFollowingCheckbyUsername = (inUsername) =>  dataState.following.find(({username}) => username === inUsername) ? true : false
+
+    postsToDisplay = dataState.allPosts.filter(({username}) => username === authState.userData.username || isFollowingCheckbyUsername(username))
 
     if(dataState.showPostsBy.latest) { //sort by date
         postsToDisplay = postsToDisplay.sort((a, b) => {

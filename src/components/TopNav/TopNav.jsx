@@ -7,7 +7,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
-export function TopNav({pageName, userId}) {
+export function TopNav({pageName, userId, editprofdmodal}) {
 
     const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ export function TopNav({pageName, userId}) {
 
     return (
         <>
-            <div className="topnav-container" style={{zIndex: dataState.modal || dataState.edittweetmodal ? 0 : 5}}>
+            <div className="topnav-container" style={{zIndex: dataState.modal || editprofdmodal ? 0 : 5}}>
                 { pageName !== "Profile" && pageName !== "OthersProfile" && <div className="page-title">
                     {pageName}
                 </div>}

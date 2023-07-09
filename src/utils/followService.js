@@ -13,7 +13,7 @@ export const follow = async (id, authToken, dispatchData, dispatchAuth) => {
       {},
       { headers: { authorization: authToken } }
     );
-    // console.log(response);
+    console.log(response);
     if(response.status === 200) {
         dispatchAuth({type: SET_USER_DATA, payload: response.data.user});
         dispatchData({type: UPDATE_USERLIST, payload: response.data.followUser});
@@ -40,7 +40,7 @@ export const unfollow = async (id, authToken, dispatchData, dispatchAuth) => {
         }
     }
     catch (error) {
-
+      console.log(error);
     }
 }
 

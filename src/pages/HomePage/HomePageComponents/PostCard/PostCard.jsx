@@ -26,8 +26,8 @@ export function PostCard({ post }) {
 
     const { authState } = useContext(AuthContext);
     
-    const [editmodal, setEditmodal] = useState(false);
-    const [showeditdelete, setShoweditdelete] = useState(false)
+    const [editmodal, setEditmodal] = useState(false); //post edit modal
+    const [showeditdelete, setShoweditdelete] = useState(false); //post edit delete modal
 
     const getAvatar = (postUsername) => dataState?.usersList.find(({ username }) => postUsername === username).avatar
 
