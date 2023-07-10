@@ -10,7 +10,7 @@
 .login-container {
     /* border-radius: 25px; */
     width: 30rem;
-    margin: 8rem auto;
+    margin: 5rem auto;
     /* padding: 2rem 0rem; */
     display: flex;
     flex-direction: column;
@@ -26,6 +26,19 @@
     text-align: center;
 }
 
+.app-logo-authpage {
+    text-decoration: none;
+    /* font-family: 'Pacifico', cursive; */
+    font-family: 'Kaushan Script', cursive;
+    /* font-family: 'Satisfy', cursive; */
+    /* font-family: 'Righteous', cursive; */
+    font-size: 2.5rem;
+    /* font-weight: 600; */
+    color: var(--primary-color);
+    /* padding-left: 16px; */
+    display: flex;
+    justify-content: flex-start;
+}
 
 .login-container input {
     border: none;

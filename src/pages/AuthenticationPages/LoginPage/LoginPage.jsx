@@ -47,6 +47,9 @@ export function LoginPage() {
         <>
             <div className="login-page">
                 <div className="login-container">
+                    <h1 className="app-logo-authpage">
+                        ConnectVerse
+                    </h1>
                     <h1 className="login-heading">
                         Login
                     </h1>

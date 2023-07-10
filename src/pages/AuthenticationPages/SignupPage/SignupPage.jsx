@@ -33,7 +33,7 @@ export function SignupPage() {
 
     const signupSubmit = (e) => {
         e.preventDefault();
-        if(userSignupData.password === userSignupData.confirmPassword) {
+        if (userSignupData.password === userSignupData.confirmPassword) {
             // dispatchData({type: RESET_DATA});
             setFormError(false);
             signupAuthUser(userSignupData);
@@ -46,6 +46,9 @@ export function SignupPage() {
     return (
         <>
             <div className="signup-container">
+                <h1 className="app-logo-authpage">
+                    ConnectVerse
+                </h1>
                 <h1 className="signup-heading">
                     Sign Up
                 </h1>
