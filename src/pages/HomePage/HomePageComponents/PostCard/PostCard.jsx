@@ -12,7 +12,6 @@ import { AuthContext } from "../../../../contexts/AuthProvider";
 import { NavLink } from "react-router-dom";
 import { deletePost } from "../../../../utils/postService";
 import { EditTweetModal } from "../../EditTweetModal";
-import { ACTIONS } from "../../../../reducers/DataRedcuer";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 
