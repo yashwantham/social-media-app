@@ -16,7 +16,7 @@ export function DataProvider({ children }) {
     // const [loading, setLoading] = useState(false);
 
     const [dataState, dispatchData] = useReducer(DataReducer, { usersList: [], allPosts: [], showPostsBy: {latest: false, trending: false}, bookmarks:[], followers: [],
-        following: [], modal: false, profilePageShow: {tweets: true, media: false, likes: false} })
+        following: [], modal: false, verifiedModal: false, profilePageShow: {tweets: true, media: false, likes: false} })
 
     console.log("dataState", dataState)
 

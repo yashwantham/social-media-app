@@ -44,6 +44,10 @@ export function SuggetionsRightAside() {
         )
     })
 
+    const isVerified = (usernameIn) => {
+        return dataState.usersList.find(({username}) => username === usernameIn).verified
+    }
+
     return (
         <>
             <div className="suggestionsrightaside-container-main">
@@ -82,7 +86,7 @@ export function SuggetionsRightAside() {
                                         <NavLink to={_id === authState.userData._id ? `/profile` : `/profile/${_id}`}>
                                             <div className="name-username-sugg-container">
                                                 <div className="name-sugg">
-                                                    {`${firstName} ${lastName}`}
+                                                    {`${firstName} ${lastName}`}{isVerified(username) && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge"/>}
                                                 </div>
                                                 <div className="username-sugg">
                                                     @{username}
@@ -110,7 +114,7 @@ export function SuggetionsRightAside() {
                                 <NavLink to={`/profile/${_id}`} className="txt-dec-none">
                                     <div className="name-username-sugg-container">
                                         <div className="name-sugg">
-                                            {`${firstName} ${lastName}`}
+                                            {`${firstName} ${lastName}`}{isVerified(username) && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge"/>}
                                         </div>
                                         <div className="username-sugg">
                                             @{username}

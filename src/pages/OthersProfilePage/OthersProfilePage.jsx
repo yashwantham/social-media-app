@@ -68,6 +68,10 @@ export function OthersProfilePage() {
         warningToastmessage(`Unfollowed ${firstName} ${lastName}`);
     }
 
+    const isVerified = (usernameIn) => {
+        return dataState.usersList.find(({username}) => username === usernameIn).verified
+    }
+
     return (
         <>
            <div className="othersprofile-page-container" style={{overflowY: dataState.modal ? "hidden" : "visible", maxHeight: dataState.modal ? "100vh" : "none"}}>
@@ -95,7 +99,7 @@ export function OthersProfilePage() {
                         </div>
                         <div className="name-n-username-pp-container">
                             <div className="name-pp">
-                                {`${visitedProfile?.firstName} ${visitedProfile?.lastName}`}
+                                {`${visitedProfile?.firstName} ${visitedProfile?.lastName}`}{isVerified(visitedProfile?.username) && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge-pp"/>}
                             </div>
                             <div className="username-pp">
                                 @{visitedProfile?.username}

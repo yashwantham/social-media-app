@@ -7,6 +7,7 @@ export const ACTIONS = {
   RESET_LATEST_TRENDING: "reset_latest_trending",
   SET_BOOKMARKS: "set_bookmarks",
   TOGGLE_MODAL: "toggle_modal",
+  TOGGLE_VERIFIEDMODAL: "toggle_verifiedmodal",
   // TOGGLE_EDIT_MODAL: "toggle_edit_modal",
   SET_FOLLOWING: "set_following",
   SET_TWEETS_PP_TRUE: "set_tweets_pp_true",
@@ -24,6 +25,7 @@ const {
   RESET_LATEST_TRENDING,
   SET_BOOKMARKS,
   TOGGLE_MODAL,
+  TOGGLE_VERIFIEDMODAL,
   // TOGGLE_EDIT_MODAL,
   SET_FOLLOWING,
   SET_TWEETS_PP_TRUE,
@@ -68,6 +70,10 @@ export const DataReducer = (state, action) => {
 
     case TOGGLE_MODAL: {
       return { ...state, modal: !state.modal };
+    }
+
+    case TOGGLE_VERIFIEDMODAL: {
+      return { ...state, verifiedModal: !state.verifiedModal };
     }
 
     // case TOGGLE_EDIT_MODAL: {

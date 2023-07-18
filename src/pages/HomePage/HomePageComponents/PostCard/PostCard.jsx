@@ -73,6 +73,10 @@ export function PostCard({ post }) {
         setEditmodal(true)
     }
 
+    const isVerified = (usernameIn) => {
+        return dataState.usersList.find(({username}) => username === usernameIn).verified
+    }
+
     return (
         <>
             {editmodal && <EditTweetModal editingPostId={post._id} setEditmodal={setEditmodal} setShoweditdelete={setShoweditdelete}/> }
@@ -89,11 +93,14 @@ export function PostCard({ post }) {
 
                         <div className="userndate-container">
                             {/* <strong>{post.name}</strong> @{post.username} · {post.createdAt} */}
-                            <NavLink to={getUserId(post?.username) === authState?.userData?._id ? `/profile` : `/profile/${getUserId(post?.username)}`} className="txt-dec-none">
+                            <NavLink to={getUserId(post?.username) === authState?.userData?._id ? `/profile` : `/profile/${getUserId(post?.username)}`} className="txt-dec-none post-user-det">
                                 <span className="name">
                                     {/* <strong>{post.name}</strong> */}
-                                    {post?.name}
+                                    {post?.name}{isVerified(post?.username) && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge"/>}
                                 </span>
+                                {/* <span className="verified-badge-container">
+                                    <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge"/>
+                                </span> */}
                                 <span className="username">
                                     @{post?.username}
                                 </span>

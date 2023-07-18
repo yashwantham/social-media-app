@@ -26,7 +26,7 @@ export function AuthProvider({children}) {
                 // console.log(response)
                 localStorage.setItem("userToken", response.data.encodedToken);
                 dispatchAuth({type: SET_LOGIN_TRUE});
-                dispatchAuth({ type: SET_USER_DATA, payload: {...response.data.createdUser, avatar: "https://res.cloudinary.com/ddqytua2y/image/upload/v1688150690/Social-media-app-assets/default_profile_400x400_fvaubd.png", bio: "Add your bio here", website: "Add your website here",location: "Add your location here", header: ""} });
+                dispatchAuth({ type: SET_USER_DATA, payload: {...response.data.createdUser, verified: false, avatar: "https://res.cloudinary.com/ddqytua2y/image/upload/v1688150690/Social-media-app-assets/default_profile_400x400_fvaubd.png", bio: "Add your bio here", website: "Add your website here",location: "Add your location here", header: ""} });
                 successToastmessage("Logged in successfully!");
                 navigate("/");
             }

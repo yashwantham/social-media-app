@@ -11,8 +11,9 @@ export function SideNav() {
 
     const [showlogout, setShowlogout] = useState(false);
 
-    const { TOGGLE_MODAL } = ACTIONS;
+    const { TOGGLE_MODAL, TOGGLE_VERIFIEDMODAL } = ACTIONS;
 
+    const {dataState} = useContext(DataContext);
     const { authState, logoutAuthUser } = useContext(AuthContext);
 
     const { dispatchData } = useContext(DataContext);
@@ -40,6 +41,9 @@ export function SideNav() {
                     <NavLink to="/bookmarks" className="navi-container txt-dec-none" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
                         <i class="fa-regular fa-bookmark nav-icon"></i><span>Bookmarks</span>
                     </NavLink>
+                    <div to="" className="navi-container txt-dec-none" onClick={() => dispatchData({ type: TOGGLE_VERIFIEDMODAL })} style={dataState.verifiedModal ? activeStyle : undefined}>
+                    <i class="fa-regular fa-circle-check nav-icon"></i><span>Verified</span>
+                    </div>
                     <NavLink to="/profile" className="navi-container txt-dec-none" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
                         <i class="fa-regular fa-user nav-icon"></i><span>Profile</span>
                     </NavLink>
@@ -67,7 +71,7 @@ export function SideNav() {
                             <NavLink to={`/profile`} className="txt-dec-none">
                                 <div className="name-username-sugg-container">
                                     <div className="name-sugg">
-                                        {`${authState.userData.firstName} ${authState.userData.lastName}`}
+                                        {`${authState.userData.firstName} ${authState.userData.lastName}`}{authState.userData.verified && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge"/>}
                                     </div>
                                     <div className="username-sugg">
                                         @{authState.userData.username}

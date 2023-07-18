@@ -25,7 +25,7 @@ export function TopNav({pageName, userId, editprofdmodal}) {
 
     return (
         <>
-            <div className="topnav-container" style={{zIndex: dataState.modal || editprofdmodal ? 0 : 5}}>
+            <div className="topnav-container" style={{zIndex: dataState.modal || dataState.verifiedModal || editprofdmodal ? 0 : 5}}>
                 { pageName !== "Profile" && pageName !== "OthersProfile" && <div className="page-title">
                     {pageName}
                 </div>}

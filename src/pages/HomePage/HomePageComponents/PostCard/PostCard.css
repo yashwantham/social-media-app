@@ -54,12 +54,29 @@
     /* justify-content: space-around; */
 }
 
+
+
 .userndate-container span {
-    margin-right: 0.4rem;
+    margin-right: 0.3rem;
 }
 
 .name {
     font-weight: 700;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+}
+
+/* .verified-badge-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.verified-badge {
+    height: 17.02px;
+    width: 17.02px;
+    position: relative;
+    top: 2.9px;
 }
 
 .username, .dot, .created-date {

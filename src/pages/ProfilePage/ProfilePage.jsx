@@ -88,7 +88,7 @@ export function ProfilePage() {
                         </div>
                         <div className="name-n-username-pp-container">
                             <div className="name-pp">
-                                {`${authState.userData.firstName} ${authState.userData.lastName}`}
+                                {`${authState.userData.firstName} ${authState.userData.lastName}`}{authState.userData.verified && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge-pp"/>}
                             </div>
                             <div className="username-pp">
                                 @{authState.userData.username}

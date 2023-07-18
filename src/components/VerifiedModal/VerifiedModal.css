@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat&family=Fasthand&family=Kaushan+Script&family=Pacifico&family=Righteous&family=Satisfy&display=swap');
+
+
+.verified-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 16px;
+    background-color: #fff;
+    width: 30rem;
+    max-width: 38rem;
+    padding: 3rem;
+}
+
+
+
+.verified-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.notverified-yet-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.already-verified-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close-vm {
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.5rem;
+    left: 2rem;
+    top: 1.2rem;
+}
+
+
+.app-logo-vm {
+    font-family: 'Kaushan Script', cursive;
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+.veri-modal-msg-container {
+    margin-top: -10px;
+}
+
+.indi-org-boxes-container {
+    margin-top: 32px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.twb-mr {
+    margin-right: 20px;
+}
+
+.individual-box-container {
+    cursor: pointer;
+    font-size: 15px;
+    text-align: left;
+    height: 112px;
+    max-width: 50%;
+    background-color: rgb(247, 249, 249);
+    color: var(--username-color);
+    box-shadow: rgba(15, 20, 25, 0.12) 0px 2px 12px;
+    /* border: 2px solid rgb(29, 155, 240); */
+    box-sizing: border-box;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.to-sel-indorg {
+    color: #000000;
+    font-weight: 700;
+}
+
+.subscribe-btn-container {
+    margin-top: 32px;
+    width: 100%;
+}
+
+.subscribe-btn {
+    cursor: pointer;
+    font-size: 15px;
+    padding: 16px;
+    padding-left: 32px;
+    padding-right: 32px;
+    min-width: 52px;
+    min-height: 52px;
+    width: 100%;
+    background-color: rgb(39, 44, 48);
+    color: #fff;
+    font-weight: 700;
+    outline-style: none;
+    border-radius: 9999px;
+}

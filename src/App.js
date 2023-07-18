@@ -15,6 +15,7 @@ import { AuthContext } from "./contexts/AuthProvider";
 import { OthersProfilePage } from "./pages/OthersProfilePage/OthersProfilePage";
 import { CreateTweetModal } from "./pages/HomePage/CreateTweetModal";
 import { DataContext } from "./contexts/DataProvider";
+import { VerifiedModal } from "./components/VerifiedModal/VerifiedModal";
 
 function App() {
 
@@ -30,6 +31,9 @@ function App() {
 
       {/* Create Tweet Modal */}
       {dataState.modal && <CreateTweetModal/>}
+
+      {/* Verified Modal */}
+      {dataState.verifiedModal && <VerifiedModal />}
 
       <Routes>
         <Route
