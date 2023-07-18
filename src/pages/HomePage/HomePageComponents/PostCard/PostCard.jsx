@@ -89,7 +89,7 @@ export function PostCard({ post }) {
 
                         <div className="userndate-container">
                             {/* <strong>{post.name}</strong> @{post.username} · {post.createdAt} */}
-                            <NavLink to={getUserId(post?.username) === authState?.userData?._id ? `/profile` : `/profile/${getUserId(post?.username)}`}>
+                            <NavLink to={getUserId(post?.username) === authState?.userData?._id ? `/profile` : `/profile/${getUserId(post?.username)}`} className="txt-dec-none">
                                 <span className="name">
                                     {/* <strong>{post.name}</strong> */}
                                     {post?.name}

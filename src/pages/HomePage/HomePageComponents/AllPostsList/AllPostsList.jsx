@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./AllPostsList.css";
 import { DataContext } from "../../../../contexts/DataProvider";
 import { PostCard } from "../PostCard/PostCard";
 import { AuthContext } from "../../../../contexts/AuthProvider";
+import { Spinner } from "../../../../components/Spinner/Spinner";
 
 export function AllPostList() {
 

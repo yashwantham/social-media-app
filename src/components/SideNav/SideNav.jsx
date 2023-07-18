@@ -28,19 +28,19 @@ export function SideNav() {
             {/* <div className="sidenav-main-container"> */}
             <div className="sidenav-container">
                 <div className="sidenav-navigators">
-                    <NavLink to="/" className="app-logo-name">
+                    <NavLink to="/" className="app-logo-name txt-dec-none">
                         ConnectVerse
                     </NavLink>
-                    <NavLink to="/" className="navi-container" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+                    <NavLink to="/" className="navi-container txt-dec-none" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
                         <i class="fa-solid fa-house nav-icon"></i><span>Home</span>
                     </NavLink>
-                    <NavLink to="/explore" className="navi-container" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+                    <NavLink to="/explore" className="navi-container txt-dec-none" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
                         <i class="fa-solid fa-magnifying-glass nav-icon"></i><span>Explore</span>
                     </NavLink>
-                    <NavLink to="/bookmarks" className="navi-container" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+                    <NavLink to="/bookmarks" className="navi-container txt-dec-none" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
                         <i class="fa-regular fa-bookmark nav-icon"></i><span>Bookmarks</span>
                     </NavLink>
-                    <NavLink to="/profile" className="navi-container" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+                    <NavLink to="/profile" className="navi-container txt-dec-none" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
                         <i class="fa-regular fa-user nav-icon"></i><span>Profile</span>
                     </NavLink>
                     <div className="post-btn-container" onClick={() => dispatchData({ type: TOGGLE_MODAL })}>
@@ -64,7 +64,7 @@ export function SideNav() {
                         </div>
 
                         <div className="userclick-sn">
-                            <NavLink to={`/profile`}>
+                            <NavLink to={`/profile`} className="txt-dec-none">
                                 <div className="name-username-sugg-container">
                                     <div className="name-sugg">
                                         {`${authState.userData.firstName} ${authState.userData.lastName}`}

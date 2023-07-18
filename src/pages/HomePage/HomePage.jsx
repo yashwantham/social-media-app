@@ -11,6 +11,7 @@ import { successToastmessage } from "../../components/Toastmessage/successToastm
 import { ToastContainer } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { Spinner } from "../../components/Spinner/Spinner";
 
 export function HomePage() {
 
@@ -21,7 +22,9 @@ export function HomePage() {
 
     const { authState } = useContext(AuthContext);
 
-    const { dataState, dispatchData } = useContext(DataContext);
+    const { dataState, dispatchData, loading } = useContext(DataContext);
+
+    // const [loading, setLoading] = useState(true);
 
     // const [modal, setModal] = useState(false);
 
@@ -55,48 +58,45 @@ export function HomePage() {
     }
 
     return (
-        <>
+        loading ? <Spinner /> : <>
+        <div className="home-page-container" style={{ overflowY: dataState.modal ? "hidden" : "visible", maxHeight: dataState.modal ? "100vh" : "none" }}>
+            <TopNav pageName="Home" />
 
-            {/* Modal */}
-
-            <div className="home-page-container" style={{ overflowY: dataState.modal ? "hidden" : "visible", maxHeight: dataState.modal ? "100vh" : "none" }}>
-                <TopNav pageName="Home" />
-
-                <div className="whats-happening-cotainer">
-                    <div className="avatar-container-wh">
-                        <Avatar imgSrc={authState.userData.avatar} userId={authState.userData._id} />
-                    </div>
-                    <div className="input-n-post-container">
-                        <div className="posttext-input-container">
-                            <div className="textarea-container-post">
-                                <textarea name="" id="" className="posttext-wh" placeholder="What is happening?!" value={postdata.content} onChange={(e) => changeHandler(e)}></textarea>
-                            </div>
-                            {/* <input type="text" className="posttext-wh" placeholder="What is happening?!"/> */}
-                            {postdata.postImage.length !== 0 && <div className="posting-img">
-                                <img src={postdata.postImage} alt="" className="selectedingtopost"/>
-                                <div className="remove-image-container" onClick={removeImageHandler}>
-                                    <FontAwesomeIcon icon={faXmark} className="removeimageicon" />
-                                </div>
-                            </div>}
+            <div className="whats-happening-cotainer">
+                <div className="avatar-container-wh">
+                    <Avatar imgSrc={authState.userData.avatar} userId={authState.userData._id} />
+                </div>
+                <div className="input-n-post-container">
+                    <div className="posttext-input-container">
+                        <div className="textarea-container-post">
+                            <textarea name="" id="" className="posttext-wh" placeholder="What is happening?!" value={postdata.content} onChange={(e) => changeHandler(e)}></textarea>
                         </div>
-                        <div className="media-post-btns">
-                            <div className="media-input-container">
-                                <label htmlFor="media-input"><i class="fa-regular fa-image img-icon"></i></label>
-                                <input key={postdata.postImage} type="file" id="media-input" name="" className="choose-file" onChange={imageUploadHandler}/>
+                        {/* <input type="text" className="posttext-wh" placeholder="What is happening?!"/> */}
+                        {postdata.postImage.length !== 0 && <div className="posting-img">
+                            <img src={postdata.postImage} alt="" className="selectedingtopost" />
+                            <div className="remove-image-container" onClick={removeImageHandler}>
+                                <FontAwesomeIcon icon={faXmark} className="removeimageicon" />
                             </div>
-                            <div className="post-btn-container-wh">
-                                {postdata.content?.trim().length === 0 && postdata.postImage.length === 0 && <button className="post-btn-zerotext-wh">Tweet</button>}
-                                {(postdata.content?.trim().length !== 0 || postdata.postImage.length !== 0) && <button className="post-btn-wh" onClick={createPostHandler}>Tweet</button>}
-                            </div>
+                        </div>}
+                    </div>
+                    <div className="media-post-btns">
+                        <div className="media-input-container">
+                            <label htmlFor="media-input"><i class="fa-regular fa-image img-icon"></i></label>
+                            <input key={postdata.postImage} type="file" id="media-input" name="" className="choose-file" onChange={imageUploadHandler} />
+                        </div>
+                        <div className="post-btn-container-wh">
+                            {postdata.content?.trim().length === 0 && postdata.postImage.length === 0 && <button className="post-btn-zerotext-wh">Tweet</button>}
+                            {(postdata.content?.trim().length !== 0 || postdata.postImage.length !== 0) && <button className="post-btn-wh" onClick={createPostHandler}>Tweet</button>}
                         </div>
                     </div>
                 </div>
-
-                {/* <h1>Home Page</h1> */}
-
-                <AllPostList />
             </div>
-            <ToastContainer />
-        </>
+
+            {/* <h1>Home Page</h1> */}
+
+            <AllPostList />
+        </div>
+        <ToastContainer />
+    </>
     )
 }

@@ -37,6 +37,11 @@
     justify-content: flex-start;
 }
 
+.txt-dec-none {
+    text-decoration: none;
+
+}
+
 .sidenav-navigators {
     display: flex;
     flex-direction: column;

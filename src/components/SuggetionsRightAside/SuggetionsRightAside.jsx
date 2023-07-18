@@ -107,7 +107,7 @@ export function SuggetionsRightAside() {
                             </div>
 
                             <div className="followbtn-name-sugg-container">
-                                <NavLink to={`/profile/${_id}`}>
+                                <NavLink to={`/profile/${_id}`} className="txt-dec-none">
                                     <div className="name-username-sugg-container">
                                         <div className="name-sugg">
                                             {`${firstName} ${lastName}`}

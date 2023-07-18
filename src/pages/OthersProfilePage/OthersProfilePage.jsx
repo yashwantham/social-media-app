@@ -76,55 +76,55 @@ export function OthersProfilePage() {
             <div className="header-profiledetails-container">
 
                     <div className="header-container">
-                        {visitedProfile.header.length !== 0 && <img src={visitedProfile.header} alt="" className="header" />}
+                        {visitedProfile?.header?.length !== 0 && <img src={visitedProfile?.header} alt="" className="header" />}
                     </div>
 
                     <div className="profiledetails-avatar-editbtn-container">
 
                         <div className="avatar-editbtn-container">
                             <div className="avatar-pp-container">
-                                <img src={visitedProfile.avatar} alt="" className="avatart-pp" />
+                                <img src={visitedProfile?.avatar} alt="" className="avatart-pp" />
                             </div>
                             <div className="follow-btn-ppcontainer">
-                                {isFollowing(visitedProfile._id, dataState) ? <button className="following-btn-pp" onClick={() => unfollowHandler(visitedProfile._id, visitedProfile.firstName, visitedProfile.lastName)}>
+                                {isFollowing(visitedProfile?._id, dataState) ? <button className="following-btn-pp" onClick={() => unfollowHandler(visitedProfile?._id, visitedProfile?.firstName, visitedProfile?.lastName)}>
                                     Following
-                                </button> : <button className="follow-btn-pp" onClick={() => followHandler(visitedProfile._id, visitedProfile.firstName, visitedProfile.lastName)}>
+                                </button> : <button className="follow-btn-pp" onClick={() => followHandler(visitedProfile?._id, visitedProfile?.firstName, visitedProfile?.lastName)}>
                                     Follow
                                 </button>}
                             </div>
                         </div>
                         <div className="name-n-username-pp-container">
                             <div className="name-pp">
-                                {`${visitedProfile.firstName} ${visitedProfile.lastName}`}
+                                {`${visitedProfile?.firstName} ${visitedProfile?.lastName}`}
                             </div>
                             <div className="username-pp">
-                                @{visitedProfile.username}
+                                @{visitedProfile?.username}
                             </div>
                         </div>
 
                         <div className="bio-pp">
-                            {visitedProfile.bio}
+                            {visitedProfile?.bio}
                         </div>
 
                         <div className="website-pp">
-                            <i class="fa-solid fa-link"></i><a href={visitedProfile.website} target="_blank" rel="noreferrer">{visitedProfile.website}</a>
+                            <i class="fa-solid fa-link"></i><a href={visitedProfile?.website} target="_blank" rel="noreferrer" className="txt-dec-none web-link">{visitedProfile?.website}</a>
                         </div>
 
                         <div className="location-createdat-container">
                             <div className="location-pp">
-                                <FontAwesomeIcon icon={faLocationDot} className="location-icon" /> {visitedProfile.location}
+                                <FontAwesomeIcon icon={faLocationDot} className="location-icon" /> {visitedProfile?.location}
                             </div>
                             <div className="createdat">
-                                <FontAwesomeIcon icon={faCalendarDays} className="calendar-icon" /> Joined {getJoinDate(visitedProfile.createdAt)}
+                                <FontAwesomeIcon icon={faCalendarDays} className="calendar-icon" /> Joined {getJoinDate(visitedProfile?.createdAt)}
                             </div>
                         </div>
 
                         <div className="followers-following-pp-container">
                             <div className="following-pp">
-                                <span className="fnumber">{visitedProfile.following.length}</span> Following
+                                <span className="fnumber">{visitedProfile?.following?.length}</span> Following
                             </div>
                             <div className="followers-pp">
-                                <span className="fnumber">{visitedProfile.followers.length}</span> Followers
+                                <span className="fnumber">{visitedProfile?.followers?.length}</span> Followers
                             </div>
                         </div>
 
@@ -134,13 +134,13 @@ export function OthersProfilePage() {
 
                 <div className="tweets-media-likes-container">
 
-                    <div className="tweets-pp" style={{ borderBottom: dataState.profilePageShow.tweets ? "4px solid var(--primary-color)" : "none" }} onClick={showTweets}>
+                    <div className="tweets-pp" style={{ borderBottom: dataState?.profilePageShow?.tweets ? "4px solid var(--primary-color)" : "none" }} onClick={showTweets}>
                         Tweets
                     </div>
-                    <div className="media-pp" style={{ borderBottom: dataState.profilePageShow.media ? "4px solid var(--primary-color)" : "none" }} onClick={showMedia}>
+                    <div className="media-pp" style={{ borderBottom: dataState?.profilePageShow?.media ? "4px solid var(--primary-color)" : "none" }} onClick={showMedia}>
                         Media
                     </div>
-                    <div className="likes-pp" style={{ borderBottom: dataState.profilePageShow.likes ? "4px solid var(--primary-color)" : "none" }} onClick={showLikes}>
+                    <div className="likes-pp" style={{ borderBottom: dataState?.profilePageShow?.likes ? "4px solid var(--primary-color)" : "none" }} onClick={showLikes}>
                         Likes
                     </div>
                 </div>

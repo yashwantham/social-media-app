@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react"
+import { createContext, useEffect, useReducer, useState } from "react"
 import axios from "axios";
 
 import { DataReducer } from "../reducers/DataRedcuer";
@@ -12,6 +12,8 @@ const {SET_USERSLIST, SET_ALLPOSTS, SET_BOOKMARKS} = ACTIONS;
 export function DataProvider({ children }) {
 
     const authToken = localStorage.getItem("userToken");
+
+    // const [loading, setLoading] = useState(false);
 
     const [dataState, dispatchData] = useReducer(DataReducer, { usersList: [], allPosts: [], showPostsBy: {latest: false, trending: false}, bookmarks:[], followers: [],
         following: [], modal: false, profilePageShow: {tweets: true, media: false, likes: false} })
@@ -29,6 +31,7 @@ export function DataProvider({ children }) {
         catch (error) {
             console.error(error)
         }
+
     }
 
     const getAllPosts = async () => {
@@ -65,7 +68,7 @@ export function DataProvider({ children }) {
 
     return (
         <>
-            <DataContext.Provider value={{dataState, dispatchData}}>{children}</DataContext.Provider>
+            <DataContext.Provider value={{dataState, dispatchData }}>{children}</DataContext.Provider>
         </>
     )
 }

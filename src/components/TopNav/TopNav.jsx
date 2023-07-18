@@ -63,7 +63,7 @@ export function TopNav({pageName, userId, editprofdmodal}) {
                     </div>
                     <div className="profilename-tcount-container">
                         <div className="profilename">
-                            {`${getVisitedProfile().firstName} ${getVisitedProfile().lastName}`}
+                            {`${getVisitedProfile()?.firstName} ${getVisitedProfile()?.lastName}`}
                         </div>
                         <div className="tweetcount">
                             {dataState.allPosts.reduce((acc, {username}) => username === getVisitedProfile().username ? acc + 1 : acc , 0)} Tweets

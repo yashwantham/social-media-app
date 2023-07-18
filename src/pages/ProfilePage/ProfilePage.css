@@ -29,6 +29,7 @@
 .header {
     width: 100%;
     height: 12.4rem;
+    object-fit: cover;
 }
 
 .avatar-pp-container {
@@ -123,6 +124,13 @@
 .website-pp {
     color: rgb(29, 155, 240);
     margin-bottom: 5px;
+}
+
+.web-link {
+    color: rgb(29, 155, 240);
+}
+.web-link:hover {
+    text-decoration: underline;
 }
 
 .website-pp i {

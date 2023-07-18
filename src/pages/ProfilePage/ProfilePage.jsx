@@ -100,7 +100,7 @@ export function ProfilePage() {
                         </div>
 
                         <div className="website-pp">
-                            <i class="fa-solid fa-link"></i><a href={authState.userData.website} target="_blank" rel="noreferrer">{authState.userData.website}</a>
+                            <i class="fa-solid fa-link"></i><a href={authState.userData.website} target="_blank" rel="noreferrer" className="txt-dec-none web-link">{authState.userData.website}</a>
                         </div>
 
                         <div className="location-createdat-container">
