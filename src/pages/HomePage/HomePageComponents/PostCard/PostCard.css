@@ -91,7 +91,7 @@
     border-radius: 5px;
     position: absolute;
     top: 0rem;
-    left: 27rem;
+    right: 1.2rem;
    background-color: #fff;
 }
 
@@ -177,4 +177,14 @@
 
 .share-icon:hover {
     color: var(--primary-color);
+}
+
+
+/* Styles for mobiles */
+
+@media (max-width: 768px) {
+
+    .userndate-container span {
+        margin-right: 0rem;
+    }
 }

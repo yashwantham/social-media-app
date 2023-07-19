@@ -98,9 +98,6 @@ export function PostCard({ post }) {
                                     {/* <strong>{post.name}</strong> */}
                                     {post?.name}{isVerified(post?.username) && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge"/>}
                                 </span>
-                                {/* <span className="verified-badge-container">
-                                    <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge"/>
-                                </span> */}
                                 <span className="username">
                                     @{post?.username}
                                 </span>

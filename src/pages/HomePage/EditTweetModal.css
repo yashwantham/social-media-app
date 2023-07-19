@@ -25,3 +25,15 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.1);
 }
+
+
+/* Styles for mobiles */
+
+@media (max-width: 768px) {
+
+    .edittweet-modal  {
+        max-width: 92vw;
+        top: 55%;
+    }
+
+}

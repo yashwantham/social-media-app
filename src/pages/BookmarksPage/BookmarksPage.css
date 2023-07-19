@@ -7,3 +7,17 @@
     border-right: 1px solid var(--border-color);
     border-left: 1px solid var(--border-color);
 }
+
+.zero-bm-msg {
+    color: var(--username-color);
+}
+
+/* Styles for mobiles */
+
+@media (max-width: 768px) {
+
+    .bookmarks-page-container {
+        padding-bottom: 3.2rem;
+    }
+
+}

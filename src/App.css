@@ -9,13 +9,11 @@
 }
 
 .App {
-  text-align: center;
-  display: flex;
-  justify-content: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-NavLink {
-  text-decoration: none;
+.app-main-sections {
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
-

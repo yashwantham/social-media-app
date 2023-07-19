@@ -1,0 +1,68 @@
+.bottomnavmobile-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.nav-icon-mobile {
+    color: #000000;
+    font-size: 1.2rem;
+}
+
+.navi-container-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem;
+    /* border: 1px solid red; */
+    border-radius: 9999px;
+    /* margin: 3rem; */
+}
+
+.navi-container-mobile:hover {
+    border-radius: 9999px;
+}
+
+
+.avatarimg-bn {
+    height: 1.7rem;
+    width: 1.7rem;
+    border-radius: 9999px;
+    object-fit: cover;
+}
+
+.avatar-sugg-container-bn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 1rem; */
+}
+
+.logout-option-mobile-bn {
+    text-align: center;
+    width: 5rem;
+    padding: 12px 0px;
+    font-weight: 700;
+    box-shadow: rgba(101, 119, 134, 0.8) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 1.00);
+    position: absolute;
+    right: 0.5rem;
+    bottom: 3.4rem;
+}
+
+
+/* Styles for laptop */
+
+@media (min-width: 768px) {
+    .bottomnavmobile-container {
+        display: none;
+    }
+}

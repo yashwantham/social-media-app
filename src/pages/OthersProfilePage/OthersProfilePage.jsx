@@ -111,7 +111,7 @@ export function OthersProfilePage() {
                         </div>
 
                         <div className="website-pp">
-                            <i class="fa-solid fa-link"></i><a href={visitedProfile?.website} target="_blank" rel="noreferrer" className="txt-dec-none web-link">{visitedProfile?.website}</a>
+                            <i class="fa-solid fa-link"></i><a href={visitedProfile?.website} target="_blank" rel="noreferrer" className="txt-dec-none web-link">{visitedProfile?.website.substring(0, 40)}...</a>
                         </div>
 
                         <div className="location-createdat-container">
@@ -150,7 +150,7 @@ export function OthersProfilePage() {
                 </div>
 
                 <div className="poststodisplay-pp">
-                    {postsToDisplay.map((post) => <PostCard post={post} />)}
+                {postsToDisplay.length === 0 ? <p className="zero-posts-msg">Oops no posts to show here!</p> : postsToDisplay.map((post) => <PostCard post={post} />)}
                 </div>
 
            </div>

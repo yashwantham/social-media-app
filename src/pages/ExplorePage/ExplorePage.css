@@ -7,3 +7,14 @@
     border-right: 1px solid var(--border-color);
     border-left: 1px solid var(--border-color);
 }
+
+
+/* Styles for mobiles */
+
+@media (max-width: 768px) {
+
+    .explore-page-container {
+        padding-bottom: 3.2rem;
+    }
+
+}

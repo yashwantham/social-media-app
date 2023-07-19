@@ -14,7 +14,7 @@
     /* height: 100vh; */
     text-align: left;
     border: 0 solid #000000;
-    width: 18rem;
+    max-width: 18rem;
     box-sizing: border-box;
     padding: 0 8px;
     /* position: fixed; */
@@ -48,9 +48,11 @@
     /* justify-content: center; */
     /* align-items: center; */
 }
+
 .navi-container {
     cursor: pointer;
 }
+
 .navi-container span {
     font-size: 1.5rem;
     margin-left: 1rem;
@@ -110,6 +112,25 @@ span {
     background-color: var(--primary-color);
 }
 
+.post-btn-tablet {
+    display: none;
+    position: relative;
+    cursor: pointer;
+    background-color: rgb(26, 140, 216);
+    color: #fff;
+    font-size: 1.2rem;
+    min-height: 52px;
+    min-width: 52px;
+    border-radius: 9999px;
+}
+
+.plus-icon {
+    position: absolute;
+    font-size: 0.75rem;
+    top: 10px;
+    left: 12px;
+}
+
 .userdeets-n-logout {
     display: flex;
     flex-direction: column;
@@ -133,6 +154,19 @@ span {
     position: absolute;
     bottom: 5rem;
     left: 1.5rem;
+}
+
+.logout-option-mobile {
+    display: none;
+    /* text-align: center; */
+    width: 100%;
+    padding: 12px 0px;
+    font-weight: 700;
+    box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 1.00);
+    position: absolute;
+    bottom: 3.5rem;
 }
 
 .logout-option:hover {
@@ -168,4 +202,77 @@ span {
     width: 100%;
     justify-content: space-between;
     align-items: center;
+}
+
+.user-sn-mobile-container {
+    display: none;
+}
+
+
+
+
+/* Styles for tablets */
+
+@media (max-width: 1024px) {
+
+
+    .sidenav-navigators span,
+    .post-btn,
+    .userdeets-sn-container {
+        display: none;
+    }
+
+    .user-sn-mobile-container {
+        display: inline-block;
+    }
+
+
+    .app-logo-name {
+        font-size: 1rem;
+    }
+
+    .sidenav-navigators {
+        justify-content: center;
+    }
+
+    .navi-container {
+        justify-content: center;
+    }
+
+    .post-btn-container {
+        justify-content: center;
+    }
+
+    .post-btn-tablet {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .userdeets-n-logout {
+        top: 42rem;
+    }
+
+    .logout-option {
+        display: none;
+    }
+
+    .logout-option-mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+}
+
+
+/* Styles for mobiles */
+
+@media (max-width: 768px) {
+
+    .sidenav-container {
+        display: none;
+    }
+    
 }

@@ -16,6 +16,7 @@ import { OthersProfilePage } from "./pages/OthersProfilePage/OthersProfilePage";
 import { CreateTweetModal } from "./pages/HomePage/CreateTweetModal";
 import { DataContext } from "./contexts/DataProvider";
 import { VerifiedModal } from "./components/VerifiedModal/VerifiedModal";
+import { BottomNavMobile } from "./components/BottomNavMobile/BottomNavMobile";
 
 function App() {
 
@@ -25,15 +26,18 @@ function App() {
   return (
     <div className="App">
 
-      {/* <RequiresAuth> */}
-      {authState.isLoggedin && <SideNav />}
-      {/* </RequiresAuth> */}
-
+      
       {/* Create Tweet Modal */}
       {dataState.modal && <CreateTweetModal/>}
 
       {/* Verified Modal */}
       {dataState.verifiedModal && <VerifiedModal />}
+
+
+      <div className="app-main-sections">
+              {/* <RequiresAuth> */}
+      {authState.isLoggedin && <SideNav />}
+      {/* </RequiresAuth> */}
 
       <Routes>
         <Route
@@ -76,6 +80,12 @@ function App() {
       {/* <RequiresAuth> */}
       {authState.isLoggedin && <SuggetionsRightAside />}
       {/* </RequiresAuth> */}
+
+      </div>
+
+
+      {authState.isLoggedin && <BottomNavMobile />}
+
     </div>
   );
 }

@@ -146,7 +146,8 @@ h2 {
 
 .name-sugg {
     font-weight: 700;
-    color: rgb(15, 20, 25);;
+    color: rgb(15, 20, 25);
+    ;
 }
 
 .username-sugg {
@@ -188,4 +189,24 @@ h2 {
     color: red;
     border-color: rgb(244, 209, 209);
     background-color: rgb(244, 209, 209);
+}
+
+
+
+
+/* Styles for tablets or similar devices - this was done exactly how twitter behaves. 1004 is not the tablet break point actually. the tablet break point is 1024px actually*/
+
+@media (max-width: 1004px) {
+
+    .suggestionsrightaside-container-main {
+        display: none;
+    }
+
+}
+
+
+/* Styles for mobiles */
+
+@media (max-width: 768px) {
+
 }
