@@ -21,6 +21,14 @@
     margin-right: 12px
 }
 
+.content-container {
+    margin-top: 5px;
+}
+
+.media-container {
+    margin-top: 12px;
+    box-sizing: border-box;
+}
 
 .post-media {
     width: 100%;
@@ -134,10 +142,6 @@
     /* margin-top: 12px; */
 }
 
-/* .action-icon-container {
-    cursor: pointer;
-} */
-
 .action-icon {
     font-size: 15px;
     cursor: pointer;
@@ -153,6 +157,12 @@
     color: var(--like-color);
 }
 
+.comment-icon-nav {
+    color: #000000;
+}
+.comment-icon-nav :hover {
+    color: var(--primary-color);
+}
 
 .interaction-count {
     font-size: 15px;
@@ -173,6 +183,7 @@
 
 .share-icon {
     color: #7e7e7e;
+    cursor: pointer;
 }
 
 .share-icon:hover {

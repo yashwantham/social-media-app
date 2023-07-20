@@ -48,6 +48,11 @@ font-family: 'Satisfy', cursive; */
     align-items: center;
     box-sizing: border-box;
 }
+.arrow-tweet-container {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
 
 .profilename-tcount-container {
     text-align: left;

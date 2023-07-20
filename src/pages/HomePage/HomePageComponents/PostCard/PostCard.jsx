@@ -24,7 +24,7 @@ export function PostCard({ post }) {
     const { dataState, dispatchData } = useContext(DataContext);
 
     const { authState } = useContext(AuthContext);
-    
+
     const [editmodal, setEditmodal] = useState(false); //post edit modal
     const [showeditdelete, setShoweditdelete] = useState(false); //post edit delete modal
 
@@ -74,12 +74,12 @@ export function PostCard({ post }) {
     }
 
     const isVerified = (usernameIn) => {
-        return dataState.usersList.find(({username}) => username === usernameIn).verified
+        return dataState.usersList.find(({ username }) => username === usernameIn).verified
     }
 
     return (
         <>
-            {editmodal && <EditTweetModal editingPostId={post._id} setEditmodal={setEditmodal} setShoweditdelete={setShoweditdelete}/> }
+            {editmodal && <EditTweetModal editingPostId={post._id} setEditmodal={setEditmodal} setShoweditdelete={setShoweditdelete} />}
 
             <div className="postcard-container">
 
@@ -96,7 +96,7 @@ export function PostCard({ post }) {
                             <NavLink to={getUserId(post?.username) === authState?.userData?._id ? `/profile` : `/profile/${getUserId(post?.username)}`} className="txt-dec-none post-user-det">
                                 <span className="name">
                                     {/* <strong>{post.name}</strong> */}
-                                    {post?.name}{isVerified(post?.username) && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge"/>}
+                                    {post?.name}{isVerified(post?.username) && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge" />}
                                 </span>
                                 <span className="username">
                                     @{post?.username}
@@ -134,7 +134,8 @@ export function PostCard({ post }) {
                     )}
 
                     <div className="content-container">
-                        <p>{post?.content}</p>
+                        {post?.content}
+                        {/* <p>{post?.content}</p> */}
                     </div>
                     <div className="media-container">
                         {post?.mediaURL && <img src={post?.mediaURL} alt="" className="post-media" />}
@@ -144,7 +145,9 @@ export function PostCard({ post }) {
                             {isPostLiked(post, authState) ? <i class="fa-solid fa-heart action-icon liked-icon" onClick={dislikeHandler}></i> : <i class="fa-regular fa-heart action-icon" onClick={likeHandler}></i>} {post?.likes.likeCount > 0 && <span className="interaction-count">{post?.likes?.likeCount}</span>}
                         </div>
                         <div className="comment-icon action-icon-container">
-                            <i class="fa-regular fa-comment action-icon"></i>{getCommentCount(post?.comments) > 0 && <span className="interaction-count">{getCommentCount(post?.comments)}</span>}
+                            <NavLink to={`/tweet/${post._id}`} className="comment-icon-nav">
+                                <i class="fa-regular fa-comment action-icon"></i>{getCommentCount(post?.comments) > 0 && <span className="interaction-count">{getCommentCount(post?.comments)}</span>}
+                            </NavLink>
                         </div>
                         <div className="bookmark-icon action-icon-container">
                             {isPostBookmarked(post?._id, dataState) ? <i class="fa-solid fa-bookmark action-icon bookmarked-icon" onClick={removeFromBookmarkHandler}></i> : <i class="fa-regular fa-bookmark action-icon" onClick={addToBookmarkHandler}></i>}

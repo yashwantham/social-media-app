@@ -7,34 +7,34 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
-export function TopNav({pageName, userId, editprofdmodal}) {
+export function TopNav({ pageName, userId, editprofdmodal }) {
 
     const navigate = useNavigate();
 
-    const {authState} = useContext(AuthContext);
-    const {dataState, dispatchData} = useContext(DataContext);
-     
-    const { SET_TRENDING_TRUE, SET_LATEST_TRUE} = ACTIONS;
+    const { authState } = useContext(AuthContext);
+    const { dataState, dispatchData } = useContext(DataContext);
 
-    const getVisitedProfile = () => dataState.usersList.find(({_id}) => _id === userId)
+    const { SET_TRENDING_TRUE, SET_LATEST_TRUE } = ACTIONS;
+
+    const getVisitedProfile = () => dataState.usersList.find(({ _id }) => _id === userId)
 
 
-    const sortByTrending = () => dispatchData({type: SET_TRENDING_TRUE})
+    const sortByTrending = () => dispatchData({ type: SET_TRENDING_TRUE })
 
-    const sortByLatest = () => dispatchData({type: SET_LATEST_TRUE})
+    const sortByLatest = () => dispatchData({ type: SET_LATEST_TRUE })
 
     return (
         <>
-            <div className="topnav-container" style={{zIndex: dataState.modal || dataState.verifiedModal || editprofdmodal ? 0 : 5}}>
-                { pageName !== "Profile" && pageName !== "OthersProfile" && <div className="page-title">
+            <div className="topnav-container" style={{ zIndex: dataState.modal || dataState.verifiedModal || editprofdmodal ? 0 : 5 }}>
+                {pageName !== "Profile" && pageName !== "OthersProfile" && pageName !== "Tweet" && <div className="page-title">
                     {pageName}
                 </div>}
                 {(pageName === "Home" || pageName === "Explore") && (
                     <div className="trending-latest-container">
-                        <div className="latest" style={{borderBottom: dataState.showPostsBy.latest ? "4px solid var(--primary-color)" : "none"}} onClick={sortByLatest}>
+                        <div className="latest" style={{ borderBottom: dataState.showPostsBy.latest ? "4px solid var(--primary-color)" : "none" }} onClick={sortByLatest}>
                             Latest
                         </div>
-                        <div className="trending" style={{borderBottom: dataState.showPostsBy.trending ? "4px solid var(--primary-color)" : "none"}} onClick={sortByTrending}>
+                        <div className="trending" style={{ borderBottom: dataState.showPostsBy.trending ? "4px solid var(--primary-color)" : "none" }} onClick={sortByTrending}>
                             Trending
                         </div>
                     </div>
@@ -43,14 +43,14 @@ export function TopNav({pageName, userId, editprofdmodal}) {
                 {(pageName === "Profile") && (
                     <div className="arrow-profilename-container">
                         <div className="leftarrow-pp">
-                        <FontAwesomeIcon icon={faArrowLeft} className="arrowpp" onClick={() => navigate("/")}/>
+                            <FontAwesomeIcon icon={faArrowLeft} className="arrowpp" onClick={() => navigate("/")} />
                         </div>
                         <div className="profilename-tcount-container">
                             <div className="profilename">
                                 {`${authState.userData.firstName} ${authState.userData.lastName}`}
                             </div>
                             <div className="tweetcount">
-                                {dataState.allPosts.reduce((acc, {username}) => username === authState.userData.username ? acc + 1 : acc , 0)} Tweets
+                                {dataState.allPosts.reduce((acc, { username }) => username === authState.userData.username ? acc + 1 : acc, 0)} Tweets
                             </div>
                         </div>
                     </div>
@@ -58,19 +58,32 @@ export function TopNav({pageName, userId, editprofdmodal}) {
 
                 {(pageName === "OthersProfile") && (
                     <div className="arrow-profilename-container">
-                    <div className="leftarrow-pp">
-                    <FontAwesomeIcon icon={faArrowLeft} className="arrowpp" onClick={() => navigate("/")}/>
-                    </div>
-                    <div className="profilename-tcount-container">
-                        <div className="profilename">
-                            {`${getVisitedProfile()?.firstName} ${getVisitedProfile()?.lastName}`}
+                        <div className="leftarrow-pp">
+                            <FontAwesomeIcon icon={faArrowLeft} className="arrowpp" onClick={() => navigate("/")} />
                         </div>
-                        <div className="tweetcount">
-                            {dataState.allPosts.reduce((acc, {username}) => username === getVisitedProfile().username ? acc + 1 : acc , 0)} Tweets
+                        <div className="profilename-tcount-container">
+                            <div className="profilename">
+                                {`${getVisitedProfile()?.firstName} ${getVisitedProfile()?.lastName}`}
+                            </div>
+                            <div className="tweetcount">
+                                {dataState.allPosts.reduce((acc, { username }) => username === getVisitedProfile().username ? acc + 1 : acc, 0)} Tweets
+                            </div>
                         </div>
                     </div>
-                </div>
                 )}
+
+                {(pageName === "Tweet") && (
+                    <div className="arrow-tweet-container">
+                        <div className="leftarrow-pp">
+                            <FontAwesomeIcon icon={faArrowLeft} className="arrowpp" onClick={() => navigate("/")} />
+                        </div>
+                        <div className="page-title">
+                            {pageName}
+                        </div>
+                    </div>
+                )
+
+                }
 
             </div>
         </>

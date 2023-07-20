@@ -17,75 +17,70 @@ import { CreateTweetModal } from "./pages/HomePage/CreateTweetModal";
 import { DataContext } from "./contexts/DataProvider";
 import { VerifiedModal } from "./components/VerifiedModal/VerifiedModal";
 import { BottomNavMobile } from "./components/BottomNavMobile/BottomNavMobile";
+import { SingleTweetPage } from "./pages/SingleTweetPage/SingleTweetPage";
 
 function App() {
-
   const { authState } = useContext(AuthContext);
   const { dataState } = useContext(DataContext);
 
   return (
     <div className="App">
-
-      
       {/* Create Tweet Modal */}
-      {dataState.modal && <CreateTweetModal/>}
+      {dataState.modal && <CreateTweetModal />}
 
       {/* Verified Modal */}
       {dataState.verifiedModal && <VerifiedModal />}
 
-
       <div className="app-main-sections">
-              {/* <RequiresAuth> */}
-      {authState.isLoggedin && <SideNav />}
-      {/* </RequiresAuth> */}
+        {/* <RequiresAuth> */}
+        {authState.isLoggedin && <SideNav />}
+        {/* </RequiresAuth> */}
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <RequiresAuth>
-              <HomePage />
-            </RequiresAuth>
-          }
-        />
-        <Route
-          path="/explore"
-          element={
-            <RequiresAuth>
-              <ExplorePage />
-            </RequiresAuth>
-          }
-        />
-        <Route
-          path="/bookmarks"
-          element={
-            <RequiresAuth>
-              <BookmarksPage />
-            </RequiresAuth>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <RequiresAuth>
-              <ProfilePage />
-            </RequiresAuth>
-          }
-        />
-        <Route path={`/profile/:userId`} element={<OthersProfilePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-      </Routes>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <RequiresAuth>
+                <HomePage />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path="/explore"
+            element={
+              <RequiresAuth>
+                <ExplorePage />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path="/bookmarks"
+            element={
+              <RequiresAuth>
+                <BookmarksPage />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <RequiresAuth>
+                <ProfilePage />
+              </RequiresAuth>
+            }
+          />
+          <Route path="/tweet/:tweetId" element={<SingleTweetPage />} />
+          <Route path="/profile/:userId" element={<OthersProfilePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Routes>
 
-      {/* <RequiresAuth> */}
-      {authState.isLoggedin && <SuggetionsRightAside />}
-      {/* </RequiresAuth> */}
-
+        {/* <RequiresAuth> */}
+        {authState.isLoggedin && <SuggetionsRightAside />}
+        {/* </RequiresAuth> */}
       </div>
 
-
       {authState.isLoggedin && <BottomNavMobile />}
-
     </div>
   );
 }
