@@ -199,3 +199,22 @@
         margin-right: 0rem;
     }
 }
+
+
+/* Styles for mobiles < 373px*/
+
+@media (max-width: 373px) {
+
+    .userndate-container {
+        font-size: 14px;
+    }
+}
+
+/* Styles for mobiles < 355px*/
+
+@media (max-width: 355px) {
+
+    .userndate-container {
+        font-size: 12px;
+    }
+}

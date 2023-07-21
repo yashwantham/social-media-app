@@ -27,7 +27,7 @@ export function TopNav({ pageName, userId, editprofdmodal }) {
     const sortByLatest = () => dispatchData({ type: SET_LATEST_TRUE })
 
     const navigateBack = () => {
-        console.log((location.state.from.pathname))
+        // console.log((location.state.from.pathname))
         navigate(location?.state?.from?.pathname)
     }
 

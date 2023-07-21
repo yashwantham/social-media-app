@@ -1,10 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./BottomNavMobile.css";
 import { useContext, useState } from "react";
 import { Avatar } from "../Avatar/Avatar";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 export function BottomNavMobile() {
+
+    const location = useLocation();
 
     const activeStyle = { fontWeight: "700" }
 
@@ -38,7 +40,7 @@ export function BottomNavMobile() {
                     <i class="fa-regular fa-circle-check nav-icon-mobile"></i>
                 </div> */}
                 <div>
-                    <NavLink to="/profile" className="navi-container-mobile txt-dec-none" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+                    <NavLink to="/profile" className="navi-container-mobile txt-dec-none" style={({ isActive }) => (isActive ? activeStyle : undefined)} state={{from: location}}>
                         <i class="fa-regular fa-user nav-icon-mobile"></i>
                     </NavLink>
                 </div>
@@ -47,7 +49,7 @@ export function BottomNavMobile() {
                         Log out
                     </div>}
                     <div className="avatar-sugg-container-bn" onClick={() => setShowlogout(!showlogout)}>
-                        <NavLink to={`/profile`}>
+                        <NavLink to={`/profile`} state={{from: location}}>
                             <img src={authState.userData.avatar} alt="" className="avatarimg-bn" />
                         </NavLink>
                     </div>
