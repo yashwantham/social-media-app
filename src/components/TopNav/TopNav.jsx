@@ -5,9 +5,12 @@ import { ACTIONS } from "../../reducers/DataRedcuer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../contexts/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function TopNav({ pageName, userId, editprofdmodal }) {
+
+    const location = useLocation();
+    console.log(location);
 
     const navigate = useNavigate();
 
@@ -22,6 +25,11 @@ export function TopNav({ pageName, userId, editprofdmodal }) {
     const sortByTrending = () => dispatchData({ type: SET_TRENDING_TRUE })
 
     const sortByLatest = () => dispatchData({ type: SET_LATEST_TRUE })
+
+    const navigateBack = () => {
+        console.log((location.state.from.pathname))
+        navigate(location?.state?.from?.pathname)
+    }
 
     return (
         <>
@@ -43,7 +51,7 @@ export function TopNav({ pageName, userId, editprofdmodal }) {
                 {(pageName === "Profile") && (
                     <div className="arrow-profilename-container">
                         <div className="leftarrow-pp">
-                            <FontAwesomeIcon icon={faArrowLeft} className="arrowpp" onClick={() => navigate("/")} />
+                            <FontAwesomeIcon icon={faArrowLeft} className="arrowpp" onClick={navigateBack} />
                         </div>
                         <div className="profilename-tcount-container">
                             <div className="profilename">
@@ -59,7 +67,7 @@ export function TopNav({ pageName, userId, editprofdmodal }) {
                 {(pageName === "OthersProfile") && (
                     <div className="arrow-profilename-container">
                         <div className="leftarrow-pp">
-                            <FontAwesomeIcon icon={faArrowLeft} className="arrowpp" onClick={() => navigate("/")} />
+                            <FontAwesomeIcon icon={faArrowLeft} className="arrowpp" onClick={navigateBack} />
                         </div>
                         <div className="profilename-tcount-container">
                             <div className="profilename">
@@ -75,7 +83,7 @@ export function TopNav({ pageName, userId, editprofdmodal }) {
                 {(pageName === "Tweet") && (
                     <div className="arrow-tweet-container">
                         <div className="leftarrow-pp">
-                            <FontAwesomeIcon icon={faArrowLeft} className="arrowpp" onClick={() => navigate("/")} />
+                            <FontAwesomeIcon icon={faArrowLeft} className="arrowpp" onClick={navigateBack} />
                         </div>
                         <div className="page-title">
                             {pageName}

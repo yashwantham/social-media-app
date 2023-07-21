@@ -8,8 +8,12 @@ import { DataContext } from "../../contexts/DataProvider";
 import { PostCard } from "../HomePage/HomePageComponents/PostCard/PostCard";
 import { ACTIONS } from "../../reducers/DataRedcuer";
 import { EditProfileDetailsModal } from "./EditProfileDetailsModal";
+import { useLocation } from "react-router-dom";
 
 export function ProfilePage() {
+
+    // const location = useLocation();
+    // console.log("Locaiton from Profile Page",location);
 
     const { SET_TWEETS_PP_TRUE, SET_MEDIA_PP_TRUE, SET_LIKES_PP_TRUE } = ACTIONS;
 

@@ -5,8 +5,12 @@ import { DataContext } from "../../contexts/DataProvider";
 import { PostCard } from "../HomePage/HomePageComponents/PostCard/PostCard";
 import axios from "axios";
 import { ACTIONS } from "../../reducers/DataRedcuer";
+import { useLocation } from "react-router-dom";
 
 export function BookmarksPage() {
+
+    // const location = useLocation();
+    // console.log("Location in BM", location);
 
     const authToken = localStorage.getItem("userToken")
 

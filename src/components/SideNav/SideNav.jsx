@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import "./SideNav.css";
 import { useContext, useState } from "react";
@@ -8,6 +8,8 @@ import { ACTIONS } from "../../reducers/DataRedcuer";
 import { Avatar } from "../Avatar/Avatar";
 
 export function SideNav() {
+
+    const location = useLocation();
 
     const [showlogout, setShowlogout] = useState(false);
 
@@ -44,7 +46,7 @@ export function SideNav() {
                     <div to="" className="navi-container txt-dec-none" onClick={() => dispatchData({ type: TOGGLE_VERIFIEDMODAL })} style={dataState.verifiedModal ? activeStyle : undefined}>
                         <i class="fa-regular fa-circle-check nav-icon"></i><span>Verified</span>
                     </div>
-                    <NavLink to="/profile" className="navi-container txt-dec-none" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+                    <NavLink to="/profile" className="navi-container txt-dec-none" style={({ isActive }) => (isActive ? activeStyle : undefined)} state={{ from: location }} >
                         <i class="fa-regular fa-user nav-icon"></i><span>Profile</span>
                     </NavLink>
                     <div className="post-btn-container" onClick={() => dispatchData({ type: TOGGLE_MODAL })}>
@@ -76,7 +78,7 @@ export function SideNav() {
                         </div>
 
                         <div className="userclick-sn">
-                            <NavLink to={`/profile`} className="txt-dec-none">
+                            <NavLink to={`/profile`} className="txt-dec-none" state={{ from: location }} >
                                 <div className="name-username-sugg-container">
                                     <div className="name-sugg">
                                         {`${authState.userData.firstName} ${authState.userData.lastName}`}{authState.userData.verified && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge" />}

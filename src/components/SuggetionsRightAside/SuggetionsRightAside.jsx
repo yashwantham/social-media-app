@@ -6,11 +6,13 @@ import { Avatar } from "../Avatar/Avatar";
 import { follow, isFollowing, unfollow } from "../../utils/followService";
 import { successToastmessage } from "../Toastmessage/successToastmessage";
 import { warningToastmessage } from "../Toastmessage/warningToastmessage";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export function SuggetionsRightAside() {
+
+    const location = useLocation();
 
     const [searchedterm, setSearchedterm] = useState("");
 
@@ -83,7 +85,7 @@ export function SuggetionsRightAside() {
                                         <Avatar imgSrc={avatar} userId={_id} />
                                     </div>
                                     <div className="followbtn-name-sugg-container" onClick={() => setSearchedterm("")}>
-                                        <NavLink to={_id === authState.userData._id ? `/profile` : `/profile/${_id}`}>
+                                        <NavLink to={_id === authState.userData._id ? `/profile` : `/profile/${_id}`} state={{ from: location }} >
                                             <div className="name-username-sugg-container">
                                                 <div className="name-sugg">
                                                     {`${firstName} ${lastName}`}{isVerified(username) && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge"/>}
@@ -111,7 +113,7 @@ export function SuggetionsRightAside() {
                             </div>
 
                             <div className="followbtn-name-sugg-container">
-                                <NavLink to={`/profile/${_id}`} className="txt-dec-none">
+                                <NavLink to={`/profile/${_id}`} className="txt-dec-none"  state={{ from: location }} >
                                     <div className="name-username-sugg-container">
                                         <div className="name-sugg">
                                             {`${firstName} ${lastName}`}{isVerified(username) && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge"/>}

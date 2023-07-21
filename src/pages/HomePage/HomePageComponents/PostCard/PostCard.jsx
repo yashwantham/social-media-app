@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import { successToastmessage } from "../../../../components/Toastmessage/successToastmessage";
 import { dislikePost, isPostLiked, likePost } from "../../../../utils/likeService";
 import { AuthContext } from "../../../../contexts/AuthProvider";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { deletePost } from "../../../../utils/postService";
 import { EditTweetModal } from "../../EditTweetModal";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,6 +18,8 @@ import { EditTweetModal } from "../../EditTweetModal";
 export function PostCard({ post }) {
 
     // console.log({post})
+
+    const location = useLocation();
 
     const authToken = localStorage.getItem("userToken");
 
@@ -77,6 +79,19 @@ export function PostCard({ post }) {
         return dataState.usersList.find(({ username }) => username === usernameIn).verified
     }
 
+    // Function to copy the link to clipboard
+    const copyLinkToClipboard = () => {
+        const linkToCopy = `https://twitter-clone-connectverse.vercel.app/tweet/${post._id}`;
+        navigator.clipboard.writeText(linkToCopy).then(
+            () => {
+                successToastmessage("Link copied to clipboard!");
+            },
+            (error) => {
+                console.error("Unable to copy link: ", error);
+            }
+        );
+    };
+
     return (
         <>
             {editmodal && <EditTweetModal editingPostId={post._id} setEditmodal={setEditmodal} setShoweditdelete={setShoweditdelete} />}
@@ -93,7 +108,7 @@ export function PostCard({ post }) {
 
                         <div className="userndate-container">
                             {/* <strong>{post.name}</strong> @{post.username} · {post.createdAt} */}
-                            <NavLink to={getUserId(post?.username) === authState?.userData?._id ? `/profile` : `/profile/${getUserId(post?.username)}`} className="txt-dec-none post-user-det">
+                            <NavLink to={getUserId(post?.username) === authState?.userData?._id ? `/profile` : `/profile/${getUserId(post?.username)}`} className="txt-dec-none post-user-det" state={{ from: location }} >
                                 <span className="name">
                                     {/* <strong>{post.name}</strong> */}
                                     {post?.name}{isVerified(post?.username) && <img src="https://res.cloudinary.com/ddqytua2y/image/upload/v1689704875/Social-media-app-assets/t2xds3rzqt2o84x9q0do.png" alt="" className="verified-badge" />}
@@ -145,16 +160,14 @@ export function PostCard({ post }) {
                             {isPostLiked(post, authState) ? <i class="fa-solid fa-heart action-icon liked-icon" onClick={dislikeHandler}></i> : <i class="fa-regular fa-heart action-icon" onClick={likeHandler}></i>} {post?.likes.likeCount > 0 && <span className="interaction-count">{post?.likes?.likeCount}</span>}
                         </div>
                         <div className="comment-icon action-icon-container">
-                            <NavLink to={`/tweet/${post._id}`} className="comment-icon-nav">
+                            <NavLink to={`/tweet/${post._id}`} className="comment-icon-nav" state={{from: location}}>
                                 <i class="fa-regular fa-comment action-icon"></i>{getCommentCount(post?.comments) > 0 && <span className="interaction-count">{getCommentCount(post?.comments)}</span>}
                             </NavLink>
                         </div>
                         <div className="bookmark-icon action-icon-container">
                             {isPostBookmarked(post?._id, dataState) ? <i class="fa-solid fa-bookmark action-icon bookmarked-icon" onClick={removeFromBookmarkHandler}></i> : <i class="fa-regular fa-bookmark action-icon" onClick={addToBookmarkHandler}></i>}
                         </div>
-                        <div className="share-icon action-icon-container">
-                            {/* <i class="fa-sharp fa-solid fa-arrow-up-from-bracket action-icon"></i> */}
-                            {/* <i class="fa-regular fa-share-nodes"></i> */}
+                        <div className="share-icon action-icon-container" onClick={copyLinkToClipboard}>
                             <FontAwesomeIcon icon={faShareNodes} />
                         </div>
                     </div>

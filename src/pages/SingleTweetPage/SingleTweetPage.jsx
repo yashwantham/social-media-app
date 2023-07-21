@@ -107,6 +107,16 @@ export function SingleTweetPage() {
         successToastmessage("Replied to a tweet");
     }
 
+    const copyLinkToClipboard = () => {
+        const textField = document.createElement("textarea");
+        textField.innerText = `https://twitter-clone-connectverse.vercel.app/tweet/${openedTweet._id}`;
+        document.body.appendChild(textField);
+        textField.select();
+        document.execCommand("copy");
+        textField.remove();
+        successToastmessage("Link copied to clipboard!");
+    };
+
     return (
         <>
             {editmodal && <EditTweetModal editingPostId={openedTweet._id} setEditmodal={setEditmodal} setShoweditdelete={setShoweditdelete} />}
@@ -179,7 +189,7 @@ export function SingleTweetPage() {
                             <div className="bookmark-icon-stp action-icon-container-stp">
                                 {isPostBookmarked(openedTweet?._id, dataState) ? <i class="fa-solid fa-bookmark action-icon-stp bookmarked-icon-stp" onClick={removeFromBookmarkHandler}></i> : <i class="fa-regular fa-bookmark action-icon-stp" onClick={addToBookmarkHandler}></i>}
                             </div>
-                            <div className="share-icon-stp action-icon-container-stp">
+                            <div className="share-icon-stp action-icon-container-stp" onClick={copyLinkToClipboard}>
                                 <FontAwesomeIcon icon={faShareNodes} />
                             </div>
                         </div>
