@@ -148,19 +148,20 @@ export function PostCard({ post }) {
                         </div>
                     )}
 
-                    <div className="content-container">
-                        {post?.content}
-                        {/* <p>{post?.content}</p> */}
-                    </div>
-                    <div className="media-container">
-                        {post?.mediaURL && <img src={post?.mediaURL} alt="" className="post-media" />}
-                    </div>
+                    <NavLink to={`/tweet/${post._id}`} state={{from: location}} className="content-n-media">
+                        <div className="content-container">
+                            {post?.content}
+                        </div>
+                        <div className="media-container">
+                            {post?.mediaURL && <img src={post?.mediaURL} alt="" className="post-media" />}
+                        </div>
+                    </NavLink>
                     <div className="likecommentbook-container">
                         <div className="like-icon action-icon-container">
                             {isPostLiked(post, authState) ? <i class="fa-solid fa-heart action-icon liked-icon" onClick={dislikeHandler}></i> : <i class="fa-regular fa-heart action-icon" onClick={likeHandler}></i>} {post?.likes.likeCount > 0 && <span className="interaction-count">{post?.likes?.likeCount}</span>}
                         </div>
                         <div className="comment-icon action-icon-container">
-                            <NavLink to={`/tweet/${post._id}`} className="comment-icon-nav" state={{from: location}}>
+                            <NavLink to={`/tweet/${post._id}`} className="comment-icon-nav" state={{ from: location }}>
                                 <i class="fa-regular fa-comment action-icon"></i>{getCommentCount(post?.comments) > 0 && <span className="interaction-count">{getCommentCount(post?.comments)}</span>}
                             </NavLink>
                         </div>

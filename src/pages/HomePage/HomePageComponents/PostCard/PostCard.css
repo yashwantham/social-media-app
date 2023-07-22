@@ -142,6 +142,10 @@
     /* margin-top: 12px; */
 }
 
+.content-n-media {
+    color: #000000;
+}
+
 .action-icon {
     font-size: 15px;
     cursor: pointer;
