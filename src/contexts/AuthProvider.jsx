@@ -17,7 +17,9 @@ export function AuthProvider({children}) {
 
     const { SET_LOGIN_TRUE, SET_LOGIN_FALSE, SET_USER_DATA, RESET_AUTH} = ACTIONS;
 
-    const [authState, dispatchAuth] = useReducer(AuthReducer, {isLoggedin: false, userData: {}})
+    const initialAuthState = localStorage.getItem("authState") ? JSON.parse(localStorage.getItem("authState")) : {isLoggedin: false, userData: {}};
+
+    const [authState, dispatchAuth] = useReducer(AuthReducer, initialAuthState)
 
     const signupAuthUser = async (signupData) => {
         try {
@@ -27,6 +29,7 @@ export function AuthProvider({children}) {
                 localStorage.setItem("userToken", response.data.encodedToken);
                 dispatchAuth({type: SET_LOGIN_TRUE});
                 dispatchAuth({ type: SET_USER_DATA, payload: {...response.data.createdUser, verified: false, avatar: "https://res.cloudinary.com/ddqytua2y/image/upload/v1688150690/Social-media-app-assets/default_profile_400x400_fvaubd.png", bio: "Add your bio here", website: "Add your website here",location: "Add your location here", header: ""} });
+                localStorage.setItem("authState", JSON.stringify({isLoggedin: true, userData: {...response.data.createdUser, verified: false, avatar: "https://res.cloudinary.com/ddqytua2y/image/upload/v1688150690/Social-media-app-assets/default_profile_400x400_fvaubd.png", bio: "Add your bio here", website: "Add your website here",location: "Add your location here", header: ""}}))
                 successToastmessage("Logged in successfully!");
                 navigate("/");
             }
@@ -45,6 +48,7 @@ export function AuthProvider({children}) {
                 localStorage.setItem("userToken", response.data.encodedToken)
                 dispatchAuth({ type: SET_LOGIN_TRUE });
                 dispatchAuth({ type: SET_USER_DATA, payload: response.data.foundUser });
+                localStorage.setItem("authState", JSON.stringify({isLoggedin: true, userData: {...response.data.foundUser}}))
                 successToastmessage("Logged in successfully!");
                 navigate("/");
             }
@@ -58,7 +62,6 @@ export function AuthProvider({children}) {
     const logoutAuthUser = () => {
         localStorage.removeItem("userToken");
         dispatchAuth({type: RESET_AUTH});
-
         warningToastmessage("Logged out successfully!");
     }
 

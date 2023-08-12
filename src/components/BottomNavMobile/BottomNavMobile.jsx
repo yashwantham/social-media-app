@@ -8,7 +8,7 @@ export function BottomNavMobile() {
 
     const location = useLocation();
 
-    const activeStyle = { fontWeight: "700" }
+    const activeStyle = { fontWeight: "1000" }
 
     const [showlogout, setShowlogout] = useState(false);
 
@@ -49,9 +49,9 @@ export function BottomNavMobile() {
                         Log out
                     </div>}
                     <div className="avatar-sugg-container-bn" onClick={() => setShowlogout(!showlogout)}>
-                        <NavLink to={`/profile`} state={{from: location}}>
+                        {/* <NavLink to={`/profile`} state={{from: location}}> */}
                             <img src={authState.userData.avatar} alt="" className="avatarimg-bn" />
-                        </NavLink>
+                        {/* </NavLink> */}
                     </div>
                 </div>
             </div>

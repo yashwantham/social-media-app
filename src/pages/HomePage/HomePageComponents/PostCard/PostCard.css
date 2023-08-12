@@ -164,6 +164,7 @@
 
 .comment-icon-nav {
     color: #000000;
+    text-decoration: none;
 }
 .comment-icon-nav :hover {
     color: var(--primary-color);
@@ -172,6 +173,7 @@
 .interaction-count {
     font-size: 15px;
     padding-left: 12px;
+    text-decoration: none;
 }
 
 .like-icon :hover {
