@@ -61,6 +61,7 @@ export function AuthProvider({children}) {
 
     const logoutAuthUser = () => {
         localStorage.removeItem("userToken");
+        localStorage.removeItem("authState");
         dispatchAuth({type: RESET_AUTH});
         warningToastmessage("Logged out successfully!");
     }
